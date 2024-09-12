@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispenser Automático</title>
+    <style>
+        body {
+            /* Estilos gerais para o corpo da página */
+            font-family: 'Josefin Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        header {
+            /* Estilo do cabeçalho */
+            background-color: #1f1f1f;
+            color: #bb86fc;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            /* Estilo do título principal */
+            margin: 0;
+            font-size: 28px;
+        }
+
+        main {
+            /* Padding para o conteúdo principal */
+            padding: 20px;
+        }
+
+        h2 {
+            /* Estilo do subtítulo */
+            text-align: center;
+            color: #bb86fc;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .food-container {
+            /* Layout flexível para o container de alimentos */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .food-item {
+            /* Estilos individuais para cada item de comida */
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            width: calc(30% - 10px);
+            /* Ajuste para 3 itens por linha */
+            color: #fff;
+        }
+
+        .food-item img {
+            /* Estilo das imagens de cada item */
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .food-item button {
+            /* Estilo dos botões de escolher horário */
+            background-color: #bb86fc;
+            color: #fff;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .food-item button:hover {
+            /* Efeito de hover no botão */
+            background-color: #9b6fd1;
+        }
+
+        footer {
+            /* Estilo do rodapé */
+            text-align: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            color: white;
+            margin-top: 20px;
+        }
+
+        /* Modal */
+        .modal {
+            /* Estilo do modal (inicialmente oculto) */
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            /* Estilo do conteúdo do modal */
+            background-color: #333;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #bb86fc;
+            border-radius: 10px;
+            width: 350px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .close {
+            /* Botão para fechar o modal */
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: -10px;
+        }
+
+        .close:hover,
+        .close:focus {
+            /* Estilos de hover e focus para o botão de fechar */
+            color: #bb86fc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal h4 {
+            /* Estilo do título dentro do modal */
+            color: #bb86fc;
+            margin-bottom: 20px;
+        }
+
+        .modal-content input[type="time"] {
+            /* Estilo do campo de horário no modal */
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #bb86fc;
+            background-color: #222;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            /* Estilo dos parágrafos no modal */
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Seção "Quer falar com a gente?" - atualmente não utilizada no HTML */
+        .contact-section {
+            padding: 40px;
+            background-color: #333;
+            text-align: center;
+        }
+
+        .contact-section input {
+            padding: 10px;
+            width: 80%;
+            max-width: 300px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .contact-section input[type="email"] {
+            background-color: #555;
+            color: white;
+        }
+
+        .contact-section input[type="email"]::placeholder {
+            color: #bbb;
+        }
+
+        /* Seção "Como funciona" - atualmente não utilizada no HTML */
+        .how-it-works {
+            background-color: #1f1f1f;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .how-it-works h3 {
+            color: #bb86fc;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Dispenser Automático</h1>
+    </header>
+
+    <main>
+        <h2>Escolha a quantidade de comida</h2>
+        <div class="food-container">
+            <!-- Primeira linha: 200g/300g/400g -->
+            <div class="food-item">
+                <img src="https://cdn.discordapp.com/attachments/1045139688308088892/1283877884322381895/racao-canina.jpg?ex=66e497f4&is=66e34674&hm=e9c91923a89300de555ed80f35750cfa3611157d4fcc0875628b87b20f5edef3&"
+                    alt="200g de comida">
+                <p>200 GM</p>
+                <button class="open-modal">Escolher Horário</button>
+            </div>
+            <div class="food-item">
+                <img src="https://cdn.discordapp.com/attachments/1045139688308088892/1283877884322381895/racao-canina.jpg?ex=66e497f4&is=66e34674&hm=e9c91923a89300de555ed80f35750cfa3611157d4fcc0875628b87b20f5edef3&"
+                    alt="300g de comida">
+                <p>300 GM</p>
+                <button class="open-modal">Escolher Horário</button>
+            </div>
+            <div class="food-item">
+                <img src="https://cdn.discordapp.com/attachments/1045139688308088892/1283877884322381895/racao-canina.jpg?ex=66e497f4&is=66e34674&hm=e9c91923a89300de555ed80f35750cfa3611157d4fcc0875628b87b20f5edef3&"
+                    alt="400g de comida">
+                <p>400 GM</p>
+                <button class="open-modal">Escolher Horário</button>
+            </div>
+            <!-- Segunda linha: 500g/600g/700g -->
+            <div class="food-item">
+                <img src="https://cdn.discordapp.com/attachments/1045139688308088892/1283877884322381895/racao-canina.jpg?ex=66e497f4&is=66e34674&hm=e9c91923a89300de555ed80f35750cfa3611157d4fcc0875628b87b20f5edef3&"
+                    alt="500g de comida">
+                <p>500 GM</p>
+                <button class="open-modal">Escolher Horário</button>
+            </div>
+            <div class="food-item">
+                <img src="https://cdn.discordapp.com/attachments/1045139688308088892/1283877884322381895/racao-canina.jpg?ex=66e497f4&is=66e34674&hm=e9c91923a89300de555ed80f35750cfa3611157d4fcc0875628b87b20f5edef3&"
+                    alt="600g de comida">
+                <p>600 GM</p>
+                <button class="open-modal">Escolher Horário</button>
+            </div>
+            <div class="food-item">
+                <img src="https://cdn.discordapp.com/attachments/1045139688308088892/1283877884322381895/racao-canina.jpg?ex=66e497f4&is=66e34674&hm=e9c91923a89300de555ed80f35750cfa3611157d4fcc0875628b87b20f5edef3&"
+                    alt="700g de comida">
+                <p>700 GM</p>
+                <button class="open-modal">Escolher Horário</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h4>Escolha o horário e quantidade:</h4>
+            <p>Defina o horário para o dispenser soltar a comida para o seu pet:</p>
+            <input type="time">
+            <p>Quantidades disponíveis: 200g, 300g, 400g, 500g, 600g, 700g.</p>
+            <button>Confirmar</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Faculdade Impacta - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        const modal = document.getElementById("myModal");
+        const openModalBtns = document.querySelectorAll(".open-modal");
+        const closeModalBtn = document.querySelector(".close");
+
+        openModalBtns.forEach(btn => {
+            btn.onclick = () => {
+                modal.style.display = "block";
+            };
+        });
+
+        closeModalBtn.onclick = () => {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+
+</html>
