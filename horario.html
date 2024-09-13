@@ -7,7 +7,6 @@
     <title>Dispenser Automático</title>
     <style>
         body {
-            /* Estilos gerais para o corpo da página */
             font-family: 'Josefin Sans', sans-serif;
             margin: 0;
             padding: 0;
@@ -16,26 +15,50 @@
         }
 
         header {
-            /* Estilo do cabeçalho */
             background-color: #1f1f1f;
             color: #bb86fc;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
 
         header h1 {
-            /* Estilo do título principal */
             margin: 0;
             font-size: 28px;
         }
 
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #bb86fc;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: 'Josefin Sans', sans-serif;
+            text-decoration: none;
+        }
+
+        .logout-button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        .logout-button:hover {
+            background-color: #9b6fd1;
+        }
+
         main {
-            /* Padding para o conteúdo principal */
             padding: 20px;
         }
 
         h2 {
-            /* Estilo do subtítulo */
             text-align: center;
             color: #bb86fc;
             font-size: 24px;
@@ -43,7 +66,6 @@
         }
 
         .food-container {
-            /* Layout flexível para o container de alimentos */
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -51,26 +73,22 @@
         }
 
         .food-item {
-            /* Estilos individuais para cada item de comida */
             background-color: #1f1f1f;
             border-radius: 10px;
             padding: 10px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             width: calc(30% - 10px);
-            /* Ajuste para 3 itens por linha */
             color: #fff;
         }
 
         .food-item img {
-            /* Estilo das imagens de cada item */
             width: 100%;
             border-radius: 10px;
             margin-bottom: 10px;
         }
 
         .food-item button {
-            /* Estilo dos botões de escolher horário */
             background-color: #bb86fc;
             color: #fff;
             padding: 8px;
@@ -81,12 +99,10 @@
         }
 
         .food-item button:hover {
-            /* Efeito de hover no botão */
             background-color: #9b6fd1;
         }
 
         footer {
-            /* Estilo do rodapé */
             text-align: center;
             padding: 20px;
             background-color: #1f1f1f;
@@ -94,9 +110,7 @@
             margin-top: 20px;
         }
 
-        /* Modal */
         .modal {
-            /* Estilo do modal (inicialmente oculto) */
             display: none;
             position: fixed;
             z-index: 1;
@@ -108,7 +122,6 @@
         }
 
         .modal-content {
-            /* Estilo do conteúdo do modal */
             background-color: #333;
             margin: 5% auto;
             padding: 20px;
@@ -120,7 +133,6 @@
         }
 
         .close {
-            /* Botão para fechar o modal */
             color: #aaa;
             float: right;
             font-size: 28px;
@@ -130,20 +142,17 @@
 
         .close:hover,
         .close:focus {
-            /* Estilos de hover e focus para o botão de fechar */
             color: #bb86fc;
             text-decoration: none;
             cursor: pointer;
         }
 
         .modal h4 {
-            /* Estilo do título dentro do modal */
             color: #bb86fc;
             margin-bottom: 20px;
         }
 
         .modal-content input[type="time"] {
-            /* Estilo do campo de horário no modal */
             padding: 10px;
             width: 100%;
             border-radius: 5px;
@@ -154,54 +163,21 @@
         }
 
         .modal p {
-            /* Estilo dos parágrafos no modal */
             color: #aaa;
             font-size: 14px;
         }
 
-        /* Seção "Quer falar com a gente?" - atualmente não utilizada no HTML */
-        .contact-section {
-            padding: 40px;
-            background-color: #333;
-            text-align: center;
-        }
-
-        .contact-section input {
-            padding: 10px;
-            width: 80%;
-            max-width: 300px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-        }
-
-        .contact-section input[type="email"] {
-            background-color: #555;
-            color: white;
-        }
-
-        .contact-section input[type="email"]::placeholder {
-            color: #bbb;
-        }
-
-        /* Seção "Como funciona" - atualmente não utilizada no HTML */
-        .how-it-works {
-            background-color: #1f1f1f;
-            padding: 40px;
-            color: white;
-            text-align: center;
-        }
-
-        .how-it-works h3 {
-            color: #bb86fc;
-        }
     </style>
 </head>
 
 <body>
     <header>
         <h1>Dispenser Automático</h1>
+        <a class="logout-button" href="login.html">
+            <img src="https://cdn.discordapp.com/attachments/833760507990507550/1283930356185042945/icons8-coco-de-cachorro-50.png?ex=66e4c8d3&is=66e37753&hm=549b3be1f9f1e607bb9d582b71c247d45db177ba14d300464e70254947b48f6a&"
+                alt="Sair">
+            Logout
+        </a>
     </header>
 
     <main>
