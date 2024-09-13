@@ -21,7 +21,6 @@
             display: flex;
             justify-content: space-between;
             background-color: rgba(40, 40, 40, 0.85);
-            /* Adiciona transparência à caixa de login */
             border-radius: 48px;
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
             overflow: hidden;
@@ -32,7 +31,6 @@
             width: 50%;
             padding: 30px;
             background-color: rgba(40, 40, 40, 0);
-            /* Fundo da parte de login com transparência */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -59,7 +57,6 @@
         }
 
         .form-group img {
-            /*Ajuste do icone de usuario dentro do campo de digitar o ID*/
             position: absolute;
             left: 55px;
             width: 24px;
@@ -98,7 +95,6 @@
         }
 
         #recover-id {
-            /*Botão de Esqueceu o ID*/
             color: #bb86fc;
             cursor: pointer;
             text-decoration: underline;
@@ -157,6 +153,25 @@
             position: fixed;
             bottom: 0;
         }
+        @media (max-width: 730px) {
+    .null {
+        display: none;
+    
+    }
+
+    #image-container {
+            min-width: 90%;
+        }
+
+        #image-container img {
+            max-width: 100%;
+            min-width: 90%;
+        }
+    #btn{
+        width: 80%;
+    } 
+
+}
     </style>
 </head>
 
@@ -168,7 +183,7 @@
                 alt="Ícone de usuário">
             <h1>Entrar</h1>
             <div class="form-group">
-                <img src="https://img.icons8.com/?size=100&id=15265&format=png&color=ffffff" alt="ID Icon">
+                <img class="null" src="https://img.icons8.com/?size=100&id=15265&format=png&color=ffffff" alt="ID Icon">
                 <input type="text" id="UserID" placeholder="Digite seu ID">
             </div>
             <div id="remember-me-container">
