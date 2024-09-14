@@ -17,14 +17,16 @@
         }
 
         :root {
-            --color21: 254, 247, 237;
-            --color22: 58, 84, 180;
+            --color21: 34, 34, 34;
             --bgcolor: rgb(var(--color21));
-            --fontcolor: rgb(var(--color22));
+            --fontcolor: rgb(255, 255, 255);
+            --button-bg: #bb86fc;
+            --button-hover-bg: rgb(80, 80, 80);
         }
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 200px;
         }
 
         body {
@@ -38,7 +40,6 @@
             display: flex;
         }
 
-        /* all buttons */
         .visit,
         .login-btn,
         .about-more,
@@ -46,8 +47,8 @@
         .submit-btn {
             width: 53%;
             height: 5vh;
-            background: var(--fontcolor);
-            color: white;
+            background: var(--button-bg);
+            color: var(--fontcolor);
             margin-top: 2rem;
             border: none;
             border-radius: 2%;
@@ -61,7 +62,15 @@
         .about-more:hover,
         .card-btn:hover,
         .submit-btn:hover {
-            background-color: rgb(0, 0, 128);
+            background-color: var(--button-hover-bg);
+        }
+
+        .login-btn {
+            width: 300%;
+            transform: translateX(-30px);
+            color: var(--fontcolor);
+            margin: 2rem auto;
+            box-shadow: 1px 1px 2px var(--fontcolor);
         }
 
         header {
@@ -75,8 +84,7 @@
         }
 
         nav {
-            position: sticky;
-            top: 0;
+            position: relative;
         }
 
         header nav,
@@ -95,37 +103,9 @@
 
         .nav-box {
             width: 40%;
+            transform: translateX(-25px);
         }
 
-        .nav-list {
-            height: inherit;
-            margin: 0 3px;
-            list-style: none;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        .nav-list {
-            text-decoration: none;
-        }
-
-        .nav-list:hover {
-            color: rgb(6, 6, 22);
-            font-weight: bold;
-        }
-
-        .login-btn {
-            width: 8vw;
-            margin-top: 0;
-        }
-
-        .open-menu,
-        .close-menu {
-            display: none;
-        }
-
-        /* all section are here */
-        /* section-1 intro */
         .sec-1,
         .sec-2,
         .sec-3,
@@ -142,11 +122,6 @@
             align-items: center;
         }
 
-        .pet-title,
-        .about-img img {
-            margin-right: 2rem;
-        }
-
         .pet-title h1 {
             font-size: 8rem;
         }
@@ -159,12 +134,12 @@
         .wrapper .pet-img img,
         .about-img img {
             border-radius: 50%;
+            margin-right: 2rem;
         }
 
-        /* section 2 about */
         .sec-2 {
             height: 70vh;
-            background: whitesmoke;
+            background: #1e1e1e;
         }
 
         .sec-2 .wrapper {
@@ -173,7 +148,6 @@
             justify-content: center;
         }
 
-        /* all titles here */
         .about-title h1,
         .service-title,
         .client-title,
@@ -191,18 +165,15 @@
             text-align: justify;
         }
 
-        /* section 3 services */
-        /* all sec wrapper are here */
         .sec-3 .wrapper,
         .sec-4 .wrapper,
         .sec-5 .wrapper,
         .sec-6 .wrapper {
             flex-direction: column;
             justify-content: space-evenly;
-            background: whitesmoke;
+            background: #1e1e1e;
         }
 
-        /* all cards are here */
         .pet-cards,
         .love-card,
         .deatail-box {
@@ -220,7 +191,6 @@
         .card-pera {
             font-weight: lighter;
             font-size: 14px;
-            word-spacing: 2px;
         }
 
         .card-img {
@@ -232,7 +202,6 @@
             opacity: 0.6;
         }
 
-        /* section 4 client */
         .sec-4,
         .sec-4 .wrapper {
             height: 120vh;
@@ -260,20 +229,6 @@
             object-fit: cover;
         }
 
-        .grallery-img .fa-heart {
-            bottom: 4rem;
-            left: 2rem;
-            font-size: 1.5rem;
-            transition: all .3s ease-in;
-            color: rgb(92, 3, 3);
-            opacity: 1;
-        }
-
-        .grallery-img .fa-heart:hover {
-            background-color: rgba(114, 5, 5, 0.377);
-        }
-
-        /* section-5 */
         .love-card {
             height: 53vh;
             width: 55%;
@@ -282,6 +237,7 @@
 
         .love-card .l-card {
             padding: 2rem;
+            background: #2e2e2e;
         }
 
         .love-card .l-card-head {
@@ -290,7 +246,6 @@
 
         .love-card .l-card-pera {
             padding-top: 2rem;
-            word-spacing: 5px;
             line-height: 27px;
             font-size: 14px;
         }
@@ -301,9 +256,8 @@
             font-size: 1rem;
         }
 
-        /* section-6 */
         .sec-6 .wrapper {
-            background-image: url(./icons/footer.webp), linear-gradient(rgb(58, 84, 180), #3e58b6d4);
+            background-image: url(./icons/footer.webp), linear-gradient(rgb(0, 0, 0), #1c1c1c);
             background-repeat: no-repeat;
             background-position: bottom left;
             color: rgb(255, 255, 255);
@@ -344,20 +298,21 @@
             background: transparent;
             border: none;
             outline: none;
-            border-bottom: 1px solid whitesmoke;
+            border-bottom: 1px solid #444;
             margin: 1em;
             padding: 1em;
             font-size: 1rem;
+            color: var(--fontcolor);
         }
 
         .input-box .inp input::placeholder,
         .input-box textarea::placeholder {
-            color: whitesmoke;
+            color: #aaa;
         }
 
         .input-box .inp input:hover,
         .input-box textarea:hover {
-            border-bottom: 2px solid whitesmoke;
+            border-bottom: 2px solid var(--fontcolor);
         }
 
         .input-box textarea {
@@ -367,53 +322,33 @@
 
         .input-box .submit-btn {
             width: 100%;
-            color: whitesmoke;
-            background: transparent;
+            color: var(--fontcolor);
+            background: var(--button-bg);
             transition: all .3s ease-in;
             font-size: 1.2rem;
         }
 
         .submit-btn:hover {
-            background: rgba(224, 255, 255, 0.281);
+            background: var(--button-hover-bg);
         }
 
-        .icon-box {
-            width: 15%;
-            height: 10vh;
-            justify-content: space-evenly;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .icon-box .fab {
-            font-weight: 400;
-            font-size: 1.2rem;
-            color: whitesmoke;
-        }
-
-        /* footer */
+        /* Rodapé */
         footer {
             height: 6vh;
             font-size: 1rem;
             padding-left: 2rem;
             align-items: center;
             justify-content: center;
+            background: var(--bgcolor);
+            color: var(--fontcolor);
         }
 
         footer p {
             padding-left: 4rem;
-            color: black;
         }
 
         /* Media Queries */
-        :root {
-            --color21: 254, 247, 237;
-            --color22: 58, 84, 180;
-            --bgcolor: rgb(var(--color21));
-            --fontcolor: rgb(var(--color22));
-        }
-
-        @media only screen and (max-width:790px) {
+        @media only screen and (max-width: 790px) {
             body {
                 width: 100%;
             }
@@ -423,63 +358,10 @@
                 height: 95vh;
             }
 
-            .nav-logo {
-                text-align: left;
-                padding-left: 2rem;
-                font-size: 1.5rem;
-            }
-
-            nav {
-                position: relative;
-            }
-
-            .nav-box .nav-menu {
-                height: 97vh;
+            .sec-1 .wrapper,
+            .sec-2 .wrapper {
                 flex-direction: column;
-                position: absolute;
-                left: -100%;
-                top: -1pc;
-                background: var(--fontcolor);
-                width: 100%;
-                transition: all .7s ease-in-out;
-                padding-top: 3rem;
-            }
-
-            .nav-list {
-                width: 100%;
-                font-size: 1.5rem;
-                padding: 12px;
-                font-size: 1.7rem;
-                color: whitesmoke;
-            }
-
-            .login-btn {
-                width: 66%;
-                font-size: 1.3rem;
-                height: 8vh;
-                background-color: rgb(0, 0, 128);
-            }
-
-            .close-menu,
-            .open-menu {
-                color: white;
-                position: absolute;
-                right: 26px;
-                display: block;
-                font-size: 2rem;
-            }
-
-            .open-menu {
-                color: var(--fontcolor);
-            }
-        }
-
-        /* tablet */
-        @media only screen and (max-width:768px) {
-
-            .pet-title h1,
-            .pet-title h3 {
-                padding-left: 2rem;
+                height: auto;
             }
 
             .pet-title h1 {
@@ -497,12 +379,7 @@
 
             .about-title p {
                 line-height: 1.6rem;
-                word-spacing: 1px;
                 text-align: inherit;
-            }
-
-            .about-more {
-                width: 90%;
             }
 
             .grallery {
@@ -524,10 +401,6 @@
                 height: 146vh;
             }
 
-            .blog-title {
-                margin: 0;
-            }
-
             .love-card {
                 width: 98%;
             }
@@ -541,17 +414,12 @@
                 width: 100%;
             }
 
-            .icon-box {
-                width: 50%;
-            }
-
             footer p {
                 padding-left: 0rem;
             }
         }
 
-        /* mobile */
-        @media only screen and (max-width:425px) {
+        @media only screen and (max-width: 425px) {
             .nav-logo {
                 font-size: 15px;
             }
@@ -566,27 +434,6 @@
             .sec-4,
             .sec-6 {
                 height: 120vh;
-                width: 100%;
-            }
-
-            .sec-1 .wrapper,
-            .sec-2 .wrapper,
-            .sec-3 .wrapper,
-            .sec-4 .wrapper {
-                height: 120vh;
-                width: 100%;
-                flex-direction: column;
-            }
-
-            /* sec-1  intro */
-            .pet-title,
-            .about-img img {
-                margin-right: 0;
-            }
-
-            .pet-title h1,
-            .pet-title h3 {
-                padding-left: 0;
             }
 
             .pet-title h1 {
@@ -599,80 +446,34 @@
             .pet-title h3,
             .about-title p {
                 font-size: 1.2rem;
-                word-spacing: 10px;
                 padding-top: 2rem;
-            }
-
-            .visit,
-            .about-more {
-                width: 100%;
-                margin-bottom: 2rem;
-            }
-
-            .pet-img img,
-            .about-img img {
-                width: 100%;
-                margin-left: 0;
-            }
-
-            .visit {
-                margin: 1rem 0 3rem 0;
-            }
-
-            /* sec-2 about */
-            .sec-2 .wrapper {
-                align-items: center;
-                padding-top: 0;
             }
 
             .sec-2 .about-title h1,
             .service-title,
             .client-title {
                 text-align: center;
-                word-spacing: 3px;
             }
 
-            .about-title p {
-                font-size: 12px;
-                word-spacing: 0px;
-                padding-top: 0;
-            }
-
-            /* sec-3 services */
             .sec-3 {
                 height: 170vh;
             }
 
-            .sec-3 .wrapper,
-            .sec-4 .wrapper,
-            .sec-5 .wrapper,
-            .sec-6 .wrapper {
+            .sec-3 .wrapper {
                 height: auto;
-            }
-
-            .service-title {
-                margin-bottom: 2rem;
             }
 
             .pet-cards,
             .love-card {
                 flex-direction: column;
                 width: 100%;
-                height: auto;
-            }
-
-            .card-btn {
-                margin-bottom: 2rem;
-                width: 100%;
             }
 
             .client-title,
             .blog-title {
-                word-spacing: 2px;
                 font-size: 38px;
             }
 
-            /* sec-4 love client */
             .sec-4 {
                 min-height: 280vh;
             }
@@ -682,23 +483,16 @@
                 grid-template-rows: repeat(1, 40vh);
             }
 
-            .grallery-img {
-                margin-right: 0;
-            }
-
-            /* sec-5  reviews */
             .sec-5 {
                 height: 127vh;
             }
 
             .sec-5 .wrapper {
                 min-height: 123vh;
-                justify-content: start;
             }
 
             .blog-title {
                 font-size: 29px;
-                line-height: inherit;
                 margin: 0;
                 margin-top: 3rem;
                 margin-bottom: 4rem;
@@ -707,24 +501,8 @@
 
             .love-card .l-card {
                 padding: 1rem;
-                box-shadow: 0px 1px 3px #3a54b482;
             }
 
-            .love-card .l-card-head {
-                font-size: 1.9rem;
-            }
-
-            .love-card .l-card-pera {
-                word-spacing: -1px;
-            }
-
-            .love-card .l-author {
-                margin-top: 2rem;
-                margin-bottom: 2rem;
-                font-size: 1.2rem;
-            }
-
-            /* sec-6 */
             .contact-title {
                 padding: 0;
             }
@@ -738,30 +516,8 @@
                 height: 45vh;
             }
 
-            .detail h2,
-            .detail p {
-                font-size: 1rem;
-                padding: 0.2rem;
-                text-align: center;
-            }
-
-            .input-box .inp {
-                height: 14%;
-            }
-
-            .input-box textarea {
-                width: 93%;
-            }
-
-            .icon-box {
-                width: 100%;
-                height: 6vh;
-                align-items: start;
-                padding: 0;
-            }
         }
 
-        /* small */
         @media only screen and (max-width: 375px) {
             .sec-5 {
                 height: 136vh;
@@ -795,7 +551,6 @@
             }
         }
 
-        /* extra small */
         @media only screen and (max-width: 320px) {
             .about-title p {
                 font-size: 10px;
@@ -806,12 +561,12 @@
             }
         }
     </style>
-
-    <title>pet|care</title>
+    <title>Bom Garoto</title>
 </head>
 
 <body>
 
+    <!-- Cabeçalho e navegação -->
     <header class="nav-head">
         <nav class="d-flex">
             <div class="nav-logo">
@@ -820,20 +575,19 @@
             <div class="open-menu"><i class="fas fa-bars"></i></div>
 
             <div class="nav-box">
-
-
                 <ul class="nav-menu d-flex">
                     <div class="close-menu"><i class="far fa-times-circle"></i></div>
-                    <li class="nav-list"> <a href="#homesec" class="nav-link"></a> Página Inicial </li>
-                    <li class="nav-list"> <a href="#aboutsec" class="nav-link"></a> Sobre </li>
-                    <li class="nav-list"> <a href="#servicesec" class="nav-link"></a> Serviços </li>
-                    <li class="nav-list"> <a href="#contactsec" class="nav-link"></a> Contato </li>
-                    <li class="nav-list"> <button class="login-btn">login</button> </li>
+                    <li class="nav-list"><a href="#homesec" class="nav-link">Página Inicial</a></li>
+                    <li class="nav-list"><a href="#aboutsec" class="nav-link">Sobre</a></li>
+                    <li class="nav-list"><a href="#servicesec" class="nav-link">Serviços</a></li>
+                    <li class="nav-list"><a href="#" class="nav-link" id="contactLink">Contato</a></li>
+                    <li class="nav-list"><button class="login-btn">login</button></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <!-- sec-1 intro -->
+
+    <!-- Seção 1: Intro -->
     <section class="sec-1" id="homesec">
         <div class="wrapper d-flex">
             <div class="pet-title">
@@ -842,11 +596,12 @@
                 <button class="visit">SAIBA MAIS</button>
             </div>
             <div class="pet-img">
-                <img src="./icons/dog.webp" alt="" srcset="">
+                <img src="./icons/dog-black-white-background.webp" alt="" srcset="">
             </div>
         </div>
     </section>
-    <!-- sec-2 about-->
+
+    <!-- Seção 2: Sobre -->
     <section class="sec-2" id="aboutsec" data-aos="fade-up">
         <div class="wrapper d-flex">
             <div class="about-img">
@@ -862,16 +617,13 @@
                     officiis tempore natus, perferendis quae animi corrupti <br>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
                     officiis tempore natus, perferendis quae animi corrupti <br>
-
-
-
                 </p>
                 <button class="about-more">Leia mais</button>
             </div>
-
         </div>
     </section>
-    <!-- sec-3 services -->
+
+    <!-- Seção 3: Serviços -->
     <section class="sec-3" id="servicesec" data-aos="fade-up">
         <div class="wrapper d-flex" data-aos="fade-up" data-aos-duration="3000">
             <div class="service-title">
@@ -882,7 +634,7 @@
                     <img src="./icons/dental.webp" alt="" class="card-img">
                     <h2 class="card-head">Automação</h2>
                     <p class="card-pera">
-                        Automação alimenticia<br>para o pet.
+                        Automação alimentícia<br>para o pet.
                     </p>
                     <button class="card-btn">COMPRE JÁ</button>
                 </div>
@@ -890,7 +642,7 @@
                     <img src="./icons/check.webp" alt="" class="card-img">
                     <h2 class="card-head">Automação</h2>
                     <p class="card-pera">
-                        Automação alimenticia<br>para o pet.
+                        Automação alimentícia<br>para o pet.
                     </p>
                     <button class="card-btn">COMPRE JÁ</button>
                 </div>
@@ -898,17 +650,17 @@
                     <img src="./icons/grooming.webp" alt="" class="card-img">
                     <h2 class="card-head">Automação</h2>
                     <p class="card-pera">
-                        Automação alimenticia<br>para o pet.
+                        Automação alimentícia<br>para o pet.
                     </p>
                     <button class="card-btn">COMPRE JÁ</button>
                 </div>
             </div>
-
         </div>
     </section>
-    <!-- sec-4  client grallery-->
-    <section class="sec-4" id="clientsec" data-aos="fade-up">
-        <div class="wrapper  d-flex" data-aos="fade-up" data-aos-duration="1500">
+
+    <!-- Seção 4: Clientes -->
+    <section class="sec-4" id="contactsec" data-aos="fade-up">
+        <div class="wrapper d-flex" data-aos="fade-up" data-aos-duration="1500">
             <div class="client-title">
                 <h1> Amor pelo Cliente</h1>
             </div>
@@ -934,7 +686,8 @@
             </div>
         </div>
     </section>
-    <!-- sec-5 review-->
+
+    <!-- Seção 5: Avaliações -->
     <section class="sec-5" id="blogsec" data-aos="fade-up">
         <div class="wrapper d-flex">
             <div class="blog-title">
@@ -942,51 +695,47 @@
             </div>
             <div class="love-card d-flex">
                 <div class="l-card">
-
                     <h2 class="l-card-head">
-                        "Amor ao Trabalho"</h2>
+                        "Amor ao Trabalho"
+                    </h2>
                     <p class="l-card-pera">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae saepe quia est ad fugit.
                         Expedita, aperiam. Similique explicabo mollitia ducimus ullam vitae distinctio soluta quos,
                         incidunt aperiam, expedita dicta alias.
-
                     </p>
                     <h4 class="l-author">Victor Ross</h4>
                 </div>
                 <div class="l-card">
-
                     <h2 class="l-card-head">"Ótimo Serviço"</h2>
                     <p class="l-card-pera">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae saepe quia est ad fugit.
                         Expedita, aperiam. Similique explicabo mollitia ducimus ullam vitae distinctio soluta quos,
                         incidunt aperiam, expedita dicta alias.
-
                     </p>
                     <h4 class="l-author">Victor Ross</h4>
                 </div>
                 <div class="l-card">
-
                     <h2 class="l-card-head">"Praticidade"</h2>
                     <p class="l-card-pera">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae saepe quia est ad fugit.
                         Expedita, aperiam. Similique explicabo mollitia ducimus ullam vitae distinctio soluta quos,
                         incidunt aperiam, expedita dicta alias.
-
                     </p>
                     <h4 class="l-author">Victor Ross</h4>
                 </div>
             </div>
-
         </div>
     </section>
-    <!-- sec-6 contact-->
-    <section class="sec-6" id="contactsec" data-aos="fade-up">
+
+    <!-- Seção 6: Contato -->
+    <div id="contactAnchor"></div>
+
+    <section class="sec-6" id="contactSection" data-aos="fade-up">
         <div class="wrapper d-flex">
             <div class="contact-title">
                 <h1> Contato</h1>
             </div>
             <div class="detail-box d-flex">
-
                 <div class="detail">
                     <h2>Telefone</h2>
                     <p> 123-456-7890</p>
@@ -994,61 +743,73 @@
                 <div class="detail">
                     <h2>Email</h2>
                     <p> victor.ross098@gmail.com</p>
-
                 </div>
                 <div class="detail">
                     <h2>Horários</h2>
                     <p>Seg - Sex: 9:00 - 20:00<br> ​​Sábados: 9:00 - 16:00 </p>
-
                 </div>
                 <div class="detail">
-                    <h2>Area de Serviço</h2>
+                    <h2>Área de Serviço</h2>
                     <p>São Paulo </p>
-
                 </div>
             </div>
-            <div class="input-box d-flex">
 
-                <div class="inp  d-flex">
-                    <input type="text" name="name" id="" placeholder="Nome">
-                    <input type="email" name="name" id="" placeholder="Email">
-
+            <!-- Formulário de contato -->
+            <div class="input-box d-flex" id="contactForm">
+                <div class="inp d-flex">
+                    <input type="text" name="name" placeholder="Nome">
+                    <input type="email" name="email" placeholder="Email">
                 </div>
-                <textarea name="massage" id="" cols="10" rows="5" placeholder="Como podemos ajudar?"></textarea>
+                <textarea name="message" cols="10" rows="5" placeholder="Como podemos ajudar?"></textarea>
                 <button class="submit-btn">Enviar</button>
             </div>
-            <div class="icon-box d-flex">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-linkedin-in"></i>
-            </div>
-        </div>
-
         </div>
     </section>
-    <!-- footer copy -->
+
+
+    <!-- Rodapé -->
     <footer class="d-flex">
         <p>©2024 by Victor Ross - Faculdade Impacta</p>
     </footer>
     <!-- script -->
     <script>
-        var openmenu = document.querySelector(".open-menu");
-        var closemenu = document.querySelector(".close-menu");
-        var menu = document.querySelector(".nav-menu");
-        var navlinks = document.querySelectorAll(".nav-box .nav-list");
-
-        openmenu.onclick = function () {
-            menu.style.left = "0";
-        }
-
-        closemenu.onclick = function () {
-            menu.style.left = "-100%";
-        }
-
-        navlinks.forEach(navlink => {
-            navlink.addEventListener("click", () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            const openmenu = document.querySelector(".open-menu");
+            const closemenu = document.querySelector(".close-menu");
+            const menu = document.querySelector(".nav-menu");
+            const navlinks = document.querySelectorAll(".nav-box .nav-link");
+    
+            // Abrir o menu
+            openmenu.addEventListener('click', () => {
+                menu.style.left = "0";
+            });
+    
+            // Fechar o menu
+            closemenu.addEventListener('click', () => {
                 menu.style.left = "-100%";
+            });
+    
+            // Fechar o menu ao clicar em um link de navegação
+            navlinks.forEach(navlink => {
+                navlink.addEventListener("click", () => {
+                    menu.style.left = "-100%";
+                });
+            });
+    
+            // Rolar suavemente para a seção de contato ao clicar no link de contato
+            const contactLink = document.getElementById('contactLink');
+            contactLink.addEventListener('click', function(e) {
+                e.preventDefault(); // Previne o comportamento padrão do link
+                
+                const contactSection = document.getElementById('contactSection');
+                const yOffset = -80; // Ajuste este valor conforme necessário
+                
+                const yPosition = contactSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                
+                window.scrollTo({
+                    top: yPosition,
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
