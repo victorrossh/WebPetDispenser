@@ -211,7 +211,7 @@
 
 <body>
 
-    <!-- Cabeçalho e navegação -->
+    <!-- Navmenu -->
     <header>
         <nav class="d-flex">
             <div class="nav-logo">
@@ -225,7 +225,7 @@
                     <li class="nav-list"><a href="index.html" class="nav-link">Página Inicial</a></li>
                     <li class="nav-list"><a href="sobre.html" class="nav-link">Sobre</a></li>
                     <li class="nav-list"><a href="service.html" class="nav-link">Serviços</a></li>
-                    <li class="nav-list"><a href="index.html#contactAnchor" class="nav-link">Contato</a></li>
+                    <li class="nav-list"><a href="index.html#contactSection" class="nav-link">Contato</a></li>
                     <li class="nav-list">
                         <a href="login.html">
                             <button class="login-btn">
@@ -297,6 +297,20 @@
         <p>&copy;2024 by Victor Ross - Faculdade Impacta</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactLink = document.querySelector('a[href="index.html#contactSection"]');
+    
+            if (contactLink) {
+                contactLink.addEventListener('click', function (e) {
+                    e.preventDefault(); 
+
+                    window.location.href = 'index.html#contactSection';
+                });
+            }
+        });
+    </script>
+    
 </body>
 
 </html>
