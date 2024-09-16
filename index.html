@@ -838,45 +838,25 @@
     <!-- script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const openmenu = document.querySelector(".open-menu");
-            const closemenu = document.querySelector(".close-menu");
-            const menu = document.querySelector(".nav-menu");
-            const navlinks = document.querySelectorAll(".nav-box .nav-link");
-
-            // Abrir o menu
-            openmenu.addEventListener('click', () => {
-                menu.style.left = "0";
-            });
-
-            // Fechar o menu
-            closemenu.addEventListener('click', () => {
-                menu.style.left = "-100%";
-            });
-
-            // Fechar o menu ao clicar em um link de navegação
-            navlinks.forEach(navlink => {
-                navlink.addEventListener("click", () => {
-                    menu.style.left = "-100%";
-                });
-            });
-
-            // Rolar suavemente para a seção de contato ao clicar no link de contato
-            const contactLink = document.getElementById('contactLink');
-            contactLink.addEventListener('click', function (e) {
-                e.preventDefault(); // Previne o comportamento padrão do link
-
+            const hash = window.location.hash;
+            
+            if (hash === "#contactSection") {
                 const contactSection = document.getElementById('contactSection');
-                const yOffset = -80; // Ajuste este valor conforme necessário
-
-                const yPosition = contactSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-                window.scrollTo({
-                    top: yPosition,
-                    behavior: 'smooth'
-                });
-            });
+                const yOffset = -80; 
+                
+                if (contactSection) {
+                    setTimeout(() => {
+                        const yPosition = contactSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        
+                        window.scrollTo({
+                            top: yPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 500); 
+                }
+            }
         });
-    </script>
+    </script>  
 
 </body>
 
