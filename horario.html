@@ -20,11 +20,14 @@
             padding: 20px;
             text-align: center;
             position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         header h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 32px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .logout-button {
@@ -40,13 +43,13 @@
             display: flex;
             align-items: center;
             font-size: 16px;
-            font-family: 'Josefin Sans', sans-serif;
             text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
         .logout-button img {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             margin-right: 8px;
         }
 
@@ -56,13 +59,27 @@
 
         main {
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         h2 {
             text-align: center;
             color: #bb86fc;
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 30px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: #bb86fc;
+            margin: 8px auto 0;
+            border-radius: 2px;
         }
 
         .food-container {
@@ -74,77 +91,104 @@
 
         .food-item {
             background-color: #1f1f1f;
-            border-radius: 10px;
-            padding: 10px;
+            border-radius: 15px;
+            padding: 15px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            width: calc(30% - 10px);
+            width: calc(33.333% - 20px);
             color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .food-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
         }
 
         .food-item img {
             width: 100%;
             border-radius: 10px;
             margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .food-item:hover img {
+            transform: scale(1.05);
         }
 
         .food-item button {
             background-color: #bb86fc;
             color: #fff;
-            padding: 8px;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
 
         .food-item button:hover {
             background-color: #9b6fd1;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #1f1f1f;
-            color: white;
-            margin-top: 20px;
-        }
-
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+            pointer-events: all;
         }
 
         .modal-content {
-            background-color: #333;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #bb86fc;
-            border-radius: 10px;
-            width: 350px;
+            background-color: #1f1f1f;
+            padding: 60px;
+            border: 2px solid #bb86fc;
+            border-radius: 15px;
+            width: 600px;
+            max-width: 90%;
             color: #fff;
             text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
 
         .close {
             color: #aaa;
-            float: right;
+            position: absolute;
+            top: 15px;
+            right: 20px;
             font-size: 28px;
             font-weight: bold;
-            margin-top: -10px;
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
 
-        .close:hover,
-        .close:focus {
+        .close:hover {
             color: #bb86fc;
-            text-decoration: none;
-            cursor: pointer;
         }
 
         .modal h4 {
@@ -159,14 +203,35 @@
             border: 1px solid #bb86fc;
             background-color: #222;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            transition: border 0.3s ease;
+        }
+
+        .modal-content input[type="time"]:hover {
+            border-color: #9b6fd1;
         }
 
         .modal p {
             color: #aaa;
             font-size: 14px;
+            margin-bottom: 20px;
         }
 
+        .modal button {
+            background-color: #bb86fc;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal button:hover {
+            background-color: #9b6fd1;
+        }
     </style>
 </head>
 
@@ -174,8 +239,7 @@
     <header>
         <h1>Dispenser Automático</h1>
         <a class="logout-button" href="login.html">
-            <img src="./icons/icon_logout.png"
-                alt="Sair">
+            <img src="./icons/icon_logout.png" alt="Sair">
             Logout
         </a>
     </header>
@@ -185,39 +249,33 @@
         <div class="food-container">
             <!-- Primeira linha: 200g/300g/400g -->
             <div class="food-item">
-                <img src="./icons/racao-canina.jpg"
-                    alt="200g de comida">
+                <img src="./icons/racao-canina.jpg" alt="200g de comida">
                 <p>200 GM</p>
                 <button class="open-modal">Escolher Horário</button>
             </div>
             <div class="food-item">
-                <img src="./icons/racao-canina.jpg"
-                    alt="300g de comida">
+                <img src="./icons/racao-canina.jpg" alt="300g de comida">
                 <p>300 GM</p>
                 <button class="open-modal">Escolher Horário</button>
             </div>
             <div class="food-item">
-                <img src="./icons/racao-canina.jpg"
-                    alt="400g de comida">
+                <img src="./icons/racao-canina.jpg" alt="400g de comida">
                 <p>400 GM</p>
                 <button class="open-modal">Escolher Horário</button>
             </div>
             <!-- Segunda linha: 500g/600g/700g -->
             <div class="food-item">
-                <img src="./icons/racao-canina.jpg"
-                    alt="500g de comida">
+                <img src="./icons/racao-canina.jpg" alt="500g de comida">
                 <p>500 GM</p>
                 <button class="open-modal">Escolher Horário</button>
             </div>
             <div class="food-item">
-                <img src="./icons/racao-canina.jpg"
-                    alt="600g de comida">
+                <img src="./icons/racao-canina.jpg" alt="600g de comida">
                 <p>600 GM</p>
                 <button class="open-modal">Escolher Horário</button>
             </div>
             <div class="food-item">
-                <img src="./icons/racao-canina.jpg"
-                    alt="700g de comida">
+                <img src="./icons/racao-canina.jpg" alt="700g de comida">
                 <p>700 GM</p>
                 <button class="open-modal">Escolher Horário</button>
             </div>
@@ -228,6 +286,7 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
+            <img src="./icons/dog_horario.png" alt="Imagem do Modal">
             <h4>Escolha o horário e quantidade:</h4>
             <p>Defina o horário para o dispenser soltar a comida para o seu pet:</p>
             <input type="time">
@@ -236,8 +295,32 @@
         </div>
     </div>
 
-    <footer>
-        <p>© 2024 Faculdade Impacta - Todos os direitos reservados</p>
+    <footer style="background-color: #1f1f1f; padding: 20px; border-radius: 8px; color: #e0e0e0; text-align: center; margin-top: 20px; font-size: 0.9em;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <!-- Instagram Icon -->
+            <div style="display: flex; align-items: center;">
+                <img src="./icons/instagram.png" alt="Instagram Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                <a href="https://instagram.com/victor_ross1" style="color: #e0e0e0; text-decoration: underline;">Instagram</a>
+            </div>
+
+            <!-- Gmail Icon -->
+            <div style="display: flex; align-items: center;">
+                <img src="./icons/gmail.png" alt="Gmail Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                <a href="mailto:victor.ross@aluno.faculdadeimpacta.com.br" style="color: #e0e0e0; text-decoration: underline;">
+                    Contato
+                </a>
+            </div>
+
+            <!-- Discord Icon -->
+            <div style="display: flex; align-items: center;">
+                <img src="./icons/discord.png" alt="Discord Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                <a href="https://discord.gg/mY9ahUxesZ" style="color: #e0e0e0; text-decoration: underline;">Discord</a>
+            </div>
+        </div>
+
+        <hr style="margin: 20px 0; border-color: #000000;">
+
+        <p>&copy;2024 by Victor Ross - Faculdade Impacta</p>
     </footer>
 
     <script>
@@ -247,17 +330,17 @@
 
         openModalBtns.forEach(btn => {
             btn.onclick = () => {
-                modal.style.display = "block";
+                modal.classList.add("show");
             };
         });
 
         closeModalBtn.onclick = () => {
-            modal.style.display = "none";
+            modal.classList.remove("show");
         };
 
         window.onclick = function (event) {
             if (event.target == modal) {
-                modal.style.display = "none";
+                modal.classList.remove("show");
             }
         };
     </script>
