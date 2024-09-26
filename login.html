@@ -225,13 +225,12 @@
                 display: none;
             }
 
-            #image-container {
-                min-width: 90%;
+            #container {
+                margin-top: -55px;
             }
 
-            #image-container img {
-                max-width: 100%;
-                min-width: 90%;
+            #image-container {
+                min-width: 80%;
             }
 
             #btn {
@@ -275,10 +274,36 @@
 
     </div>
 
-    <footer>
-        <p>
-            © 2024 Faculdade Impacta - Todos os direitos reservados
-        </p>
+    <footer
+        style="background-color: var(--bgcolor); padding: 20px; border-radius: 8px; color: var(--fontcolor); text-align: center; margin-top: 20px; font-size: 0.9em">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap">
+            <!-- Instagram Icon -->
+            <div style="display: flex; align-items: center">
+                <img src="./icons/instagram.png" alt="Instagram Icon"
+                    style="width: 24px; height: 24px; margin-right: 8px" />
+                <a href="https://instagram.com/victor_ross1"
+                    style="color: var(--fontcolor); text-decoration: underline">Instagram</a>
+            </div>
+
+            <!-- Gmail Icon -->
+            <div style="display: flex; align-items: center">
+                <img src="./icons/gmail.png" alt="Gmail Icon" style="width: 24px; height: 24px; margin-right: 8px" />
+                <a href="mailto:victor.ross@aluno.faculdadeimpacta.com.br"
+                    style="color: var(--fontcolor); text-decoration: underline"> Contato </a>
+            </div>
+
+            <!-- Discord Icon -->
+            <div style="display: flex; align-items: center">
+                <img src="./icons/discord.png" alt="Discord Icon"
+                    style="width: 24px; height: 24px; margin-right: 8px" />
+                <a href="https://discord.gg/mY9ahUxesZ"
+                    style="color: var(--fontcolor); text-decoration: underline">Discord</a>
+            </div>
+        </div>
+
+        <hr style="margin: 20px 0; border-color: #000000" />
+
+        <p>&copy;2024 by Victor Ross - Faculdade Impacta</p>
     </footer>
 
     <!-- Modal -->
@@ -301,7 +326,7 @@
             document.getElementById("modal").style.display = "none";
         }
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == document.getElementById("modal")) {
                 closeModal();
             }
