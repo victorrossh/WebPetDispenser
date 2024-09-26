@@ -12,6 +12,11 @@
             padding: 0;
             background-color: #121212;
             color: #e0e0e0;
+            min-height: 100vh;
+            /* Ocupa toda a altura da tela */
+            display: flex;
+            flex-direction: column;
+            /* Organiza o conteúdo em coluna */
         }
 
         header {
@@ -28,7 +33,7 @@
             font-size: 32px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color:white
+            color: white
         }
 
         .logout-button {
@@ -59,6 +64,8 @@
         }
 
         main {
+            flex: 1;
+            /* Faz o main crescer para ocupar o espaço disponível */
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
@@ -86,20 +93,22 @@
         .food-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Centraliza os itens */
-            gap: 20px;
+            justify-content: center;
+            gap: 200px;
         }
 
         .food-item {
             background-color: #1f1f1f;
             border-radius: 15px;
-            padding: 15px;
+            padding: 30px 20px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            width: calc(33.333% - 20px);
+            width: 320px;
+            height: 420px;
             color: #fff;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            margin-top: 80px;
         }
 
         .food-item:hover {
@@ -109,8 +118,8 @@
 
         .food-item img {
             width: 100%;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            border-radius: 50px;
+            margin-bottom: 20px;
             transition: transform 0.3s ease;
         }
 
@@ -121,17 +130,20 @@
         .food-item button {
             background-color: #bb86fc;
             color: #fff;
-            padding: 10px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            width: 100%;
+            width: 80%;
             font-size: 16px;
             transition: background-color 0.3s ease;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .food-item button:hover {
             background-color: #9b6fd1;
+            transform: scale(1.05);
         }
 
         .modal {
@@ -233,9 +245,7 @@
         .modal button:hover {
             background-color: #9b6fd1;
         }
-        
 
-        /* Estilos para ajustar o botão de logout no horario.html */
         .logout-button img {
             width: 24px;
             height: 24px;
@@ -248,7 +258,7 @@
             }
 
             .logout-button {
-                padding: 10px 20px; 
+                padding: 10px 20px;
             }
 
             .modal-content {
@@ -258,12 +268,10 @@
         }
 
         .food-item img {
-    width: 75%; 
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-}
-
-
+            width: 75%;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 
@@ -304,18 +312,22 @@
         </div>
     </div>
 
-    <footer style="background-color: #1f1f1f; padding: 20px; border-radius: 8px; color: #e0e0e0; text-align: center; margin-top: 20px; font-size: 0.9em;">
+    <footer
+        style="background-color: #1f1f1f; padding: 20px; border-radius: 8px; color: #e0e0e0; text-align: center; margin-top: 20px; font-size: 0.9em;">
         <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
             <!-- Instagram Icon -->
             <div style="display: flex; align-items: center;">
-                <img src="./icons/instagram.png" alt="Instagram Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-                <a href="https://instagram.com/victor_ross1" style="color: #e0e0e0; text-decoration: underline;">Instagram</a>
+                <img src="./icons/instagram.png" alt="Instagram Icon"
+                    style="width: 24px; height: 24px; margin-right: 8px;">
+                <a href="https://instagram.com/victor_ross1"
+                    style="color: #e0e0e0; text-decoration: underline;">Instagram</a>
             </div>
 
             <!-- Gmail Icon -->
             <div style="display: flex; align-items: center;">
                 <img src="./icons/gmail.png" alt="Gmail Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-                <a href="mailto:victor.ross@aluno.faculdadeimpacta.com.br" style="color: #e0e0e0; text-decoration: underline;">
+                <a href="mailto:victor.ross@aluno.faculdadeimpacta.com.br"
+                    style="color: #e0e0e0; text-decoration: underline;">
                     Contato
                 </a>
             </div>
