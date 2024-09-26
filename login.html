@@ -153,25 +153,91 @@
             position: fixed;
             bottom: 0;
         }
+
+        /* Modal Estilos */
+        #modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        #modal-content {
+            background-color: #282828;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #444;
+            width: 400px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #close:hover,
+        #close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #modal #email-input {
+            width: 80%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background-color: #3a3a3a;
+            color: white;
+            outline: none;
+        }
+
+        #modal #send-btn {
+            width: 50%;
+            padding: 10px;
+            background-color: #bb86fc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #modal #send-btn:hover {
+            background-color: #8e6bc6;
+        }
+
         @media (max-width: 730px) {
-    .null {
-        display: none;
-    
-    }
+            .null {
+                display: none;
+            }
 
-    #image-container {
-            min-width: 90%;
+            #image-container {
+                min-width: 90%;
+            }
+
+            #image-container img {
+                max-width: 100%;
+                min-width: 90%;
+            }
+
+            #btn {
+                width: 80%;
+            }
         }
-
-        #image-container img {
-            max-width: 100%;
-            min-width: 90%;
-        }
-    #btn{
-        width: 80%;
-    } 
-
-}
     </style>
 </head>
 
@@ -179,8 +245,7 @@
 
     <div id="container">
         <div id="Forms">
-            <img id="user-icon" src="./icons/user_login2.png"
-                alt="Ícone de usuário">
+            <img id="user-icon" src="./icons/user_login2.png" alt="Ícone de usuário">
             <h1>Entrar</h1>
             <div class="form-group">
                 <img class="null" src="./icons/user_icon.png" alt="ID Icon">
@@ -191,7 +256,7 @@
                     <input type="checkbox" id="remember">
                     <label for="remember">Lembrar-me</label>
                 </div>
-                <div id="recover-id">Esqueceu seu ID?</div>
+                <div id="recover-id" onclick="openModal()">Esqueceu seu ID?</div>
             </div>
             <form action="horario.html" method="get">
                 <button id="btn">
@@ -201,13 +266,12 @@
             </form>
         </div>
         <div id="image-container">
-            <img src="./icons/dog_login.png"
-                alt="">
+            <img src="./icons/dog_login.png" alt="">
         </div>
 
         <a href="index.html" style="position: absolute; top: 20px; left: 20px;">
             <img src="./icons/back_button.png" alt="Voltar" style="width: 32px; height: 32px;">
-        </a>        
+        </a>
 
     </div>
 
@@ -216,6 +280,33 @@
             © 2024 Faculdade Impacta - Todos os direitos reservados
         </p>
     </footer>
+
+    <!-- Modal -->
+    <div id="modal">
+        <div id="modal-content">
+            <span id="close" onclick="closeModal()">&times;</span>
+            <h2>Esqueceu Seu ID ?</h2>
+            <p>Não se preocupe, enviaremos no seu E-mail</p>
+            <input type="email" id="email-input" placeholder="Email">
+            <button id="send-btn">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("modal")) {
+                closeModal();
+            }
+        }
+    </script>
 
 </body>
 
