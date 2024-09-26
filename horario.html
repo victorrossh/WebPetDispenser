@@ -28,6 +28,7 @@
             font-size: 32px;
             letter-spacing: 1px;
             text-transform: uppercase;
+            color:white
         }
 
         .logout-button {
@@ -85,7 +86,7 @@
         .food-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center; /* Centraliza os itens */
             gap: 20px;
         }
 
@@ -161,7 +162,7 @@
             padding: 60px;
             border: 2px solid #bb86fc;
             border-radius: 15px;
-            width: 600px;
+            width: 400px;
             max-width: 90%;
             color: #fff;
             text-align: center;
@@ -232,6 +233,7 @@
         .modal button:hover {
             background-color: #9b6fd1;
         }
+        
 
         /* Estilos para ajustar o botão de logout no horario.html */
         .logout-button img {
@@ -250,24 +252,24 @@
             }
 
             .modal-content {
-            background-color: #1f1f1f;
-            padding: center;
-            border: 2px solid #bb86fc;
-            border-radius: 15px;
-            width: 260px;
-            max-width: 100%;
-            color: #fff;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+                padding: 20px;
+                width: 260px;
+            }
         }
-    }
+
+        .food-item img {
+    width: 75%; 
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
 
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Dispenser Automático</h1>
+        <h1>BOM GAROTO</h1>
         <a class="logout-button" href="login.html">
             <img src="./icons/icon_logout.png" alt="Sair">
             Logout
@@ -275,39 +277,17 @@
     </header>
 
     <main>
-        <h2>Escolha a quantidade de comida</h2>
         <div class="food-container">
-            <!-- Primeira linha: 200g/300g/400g -->
+            <!-- Apenas três itens para a seção de serviços -->
             <div class="food-item">
-                <img src="./icons/racao-canina.jpg" alt="200g de comida">
-                <p>200 GM</p>
+                <img src="./icons/dental.webp" alt="comida">
+                <p>Comida</p>
                 <button class="open-modal">Escolher Horário</button>
             </div>
             <div class="food-item">
-                <img src="./icons/racao-canina.jpg" alt="300g de comida">
-                <p>300 GM</p>
-                <button class="open-modal">Escolher Horário</button>
-            </div>
-            <div class="food-item">
-                <img src="./icons/racao-canina.jpg" alt="400g de comida">
-                <p>400 GM</p>
-                <button class="open-modal">Escolher Horário</button>
-            </div>
-            <!-- Segunda linha: 500g/600g/700g -->
-            <div class="food-item">
-                <img src="./icons/racao-canina.jpg" alt="500g de comida">
-                <p>500 GM</p>
-                <button class="open-modal">Escolher Horário</button>
-            </div>
-            <div class="food-item">
-                <img src="./icons/racao-canina.jpg" alt="600g de comida">
-                <p>600 GM</p>
-                <button class="open-modal">Escolher Horário</button>
-            </div>
-            <div class="food-item">
-                <img src="./icons/racao-canina.jpg" alt="700g de comida">
-                <p>700 GM</p>
-                <button class="open-modal">Escolher Horário</button>
+                <img src="./icons/grooming.webp" alt="Notificações">
+                <p>Notificações</p>
+                <button class="open-modal">Notificações</button>
             </div>
         </div>
     </main>
@@ -321,7 +301,6 @@
             <p>Defina o horário para o dispenser soltar a comida para o seu pet:</p>
             <input type="time">
             <p>Quantidades disponíveis: 200g, 300g, 400g, 500g, 600g, 700g.</p>
-            <button>Confirmar</button>
         </div>
     </div>
 
