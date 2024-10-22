@@ -559,10 +559,6 @@
                 grid-template-columns: repeat(1, 42vh);
             }
 
-            .blog-title {
-                font-size: 27px;
-            }
-
             .love-card .l-card-head {
                 font-size: 1.6rem;
             }
@@ -631,7 +627,7 @@
             <div class="pet-title">
                 <h1> Bom <br> Garoto </h1>
                 <h3> Automação para o seu pet</h3>
-                <button class="visit">SAIBA MAIS</button>
+                <button class="visit" onclick="scrollToSection()">SAIBA MAIS</button>
             </div>
             <div class="pet-img">
                 <img src="./icons/dog-black-white-background.webp" alt="" srcset="">
@@ -673,7 +669,7 @@
                     <p class="card-pera">
                         Automação alimentícia<br>para o pet.
                     </p>
-                    <button class="card-btn">COMPRE JÁ</button>
+                    <!--<button class="card-btn">COMPRE JÁ</button>-->
                 </div>
                 <div class="card">
                     <img src="./icons/service2.webp" alt="" class="card-img">
@@ -681,7 +677,7 @@
                     <p class="card-pera">
                         Automação alimentícia<br>para o pet.
                     </p>
-                    <button class="card-btn">COMPRE JÁ</button>
+                    <!--<button class="card-btn">COMPRE JÁ</button>-->
                 </div>
                 <div class="card">
                     <img src="./icons/service3.webp" alt="" class="card-img">
@@ -689,7 +685,7 @@
                     <p class="card-pera">
                         Automação alimentícia<br>para o pet.
                     </p>
-                    <button class="card-btn">COMPRE JÁ</button>
+                    <!--<button class="card-btn">COMPRE JÁ</button>-->
                 </div>
             </div>
         </div>
@@ -845,7 +841,7 @@
 
             if (hash === "#contactSection") {
                 const contactSection = document.getElementById('contactSection');
-                const yOffset = -80;
+                const yOffset = -125;
 
                 if (contactSection) {
                     setTimeout(() => {
@@ -859,7 +855,16 @@
                 }
             }
         });
+
+        function scrollToSection() {
+            const aboutSection = document.getElementById("aboutsec");
+
+            if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     </script>
+
 
 </body>
 
