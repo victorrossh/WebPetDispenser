@@ -1,0 +1,11 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Check if the request is for a file that exists
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Check if the request is for a directory that exists
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite URLs without .php extension
+RewriteRule ^(.*)$ $1.php [L,QSA]
