@@ -4,9 +4,9 @@ require_once '../models/User.php';
 class LoginController {
     public function login($data) {
         $user = new User();
-		$token = $user->login($data);
-        if ($token) {
-            return ['status' => 'success', 'message' => 'User logged in successfully', 'token' => $token];
+		$response = $user->login($data);
+        if ($response) {
+            return ['status' => 'success', 'message' => 'User logged in successfully', 'name' => $response["name"], 'token' => $response["token"]];
         }
         return ['status' => 'error', 'message' => 'Failed to login user'];
     }
