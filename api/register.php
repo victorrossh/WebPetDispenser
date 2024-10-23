@@ -1,5 +1,5 @@
 <?php
-require_once '../controllers/RegisterController.php';
+require_once '../controllers/UserController.php';
 
 // Read raw POST data
 $rawData = file_get_contents("php://input");
@@ -10,7 +10,7 @@ $data = json_decode($rawData, true);
 // Check if name, password and email are set in the request
 if (isset($data['name']) && isset($data['password']) && isset($data['email'])) {
     // Call the register function in the controller
-    $controller = new RegisterController();
+    $controller = new UserController();
     $response = $controller->create($data);
 
     // Return the response in JSON format

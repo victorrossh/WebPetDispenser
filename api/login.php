@@ -1,5 +1,5 @@
 <?php
-require_once '../controllers/LoginController.php';
+require_once '../controllers/UserController.php';
 
 // Read raw POST data
 $rawData = file_get_contents("php://input");
@@ -10,7 +10,7 @@ $data = json_decode($rawData, true);
 // Check if email and password are set in the request
 if (isset($data['email']) && isset($data['password'])) {
     // Call the login function in the controller
-    $controller = new LoginController();
+    $controller = new UserController();
     $response = $controller->login($data);
 
     // Return the response in JSON format
