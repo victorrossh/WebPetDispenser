@@ -5,5 +5,6 @@ content-type: application/json
 	"token": "hc3jCI5QpneRFbZnIIuGf05RKtvkDqpq",
 	"deviceId": "3",
 	"command": "testCommand",
-	"time": "12:43"
+	"time": "12:43",
+	"info": "200"
 }

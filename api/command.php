@@ -13,15 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Decode JSON data into PHP associative array
     $data = json_decode($rawData, true);
 
-    // Check if token, deviceId and command are set in the request
-    if (isset($data['token']) && isset($data['deviceId']) && isset($data['command'])) {
+    // Check if token, deviceId, command and info are set in the request
+    if (isset($data['token']) && isset($data['deviceId']) && isset($data['command']) && isset($data['info'])) {
         // Call the pushcommand function in the controller
         $response = $controller->pushcommand($data);
 
         // Return the response in JSON format
         echo json_encode($response);
     } else {
-        // If token, deviceId or command are missing, return an error
+        // If token, deviceId, command or info are missing, return an error
         http_response_code(400); // Bad Request
         echo json_encode([
             'status' => 'error',

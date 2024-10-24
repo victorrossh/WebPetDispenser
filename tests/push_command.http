@@ -4,5 +4,6 @@ content-type: application/json
 {
 	"token": "hc3jCI5QpneRFbZnIIuGf05RKtvkDqpq",
 	"deviceId": "3",
-	"command": "testCommand"
+	"command": "testCommand",
+	"info": "testInfo"
 }

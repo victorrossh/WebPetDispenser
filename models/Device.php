@@ -117,9 +117,9 @@ class Device {
         }
     
         // Prepare the SQL query to insert the command into DeviceQueue
-        $sql = "INSERT INTO DeviceQueue (DeviceId, command, issuedOn) VALUES (?, ?, NOW())";
+        $sql = "INSERT INTO DeviceQueue (DeviceId, command, info, issuedOn) VALUES (?, ?, ?, NOW())";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("is", $data["deviceId"], $data["command"]);
+        $stmt->bind_param("iss", $data["deviceId"], $data["command"], $data["info"]);
     
         // Execute the insert query
         if ($stmt->execute()) {
@@ -204,13 +204,13 @@ class Device {
         }
 
         // Prepare the SQL query to insert the scheduled command into the DeviceScheduler table
-        $sql = "INSERT INTO DeviceScheduler (DeviceId, command, time) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO DeviceScheduler (DeviceId, command, info, time) VALUES (?, ?, ?, ?)";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($sql);
 
         // Bind the device ID, command, and time to the placeholders
-        $stmt->bind_param("iss", $data['deviceId'], $data['command'], $data['time']);
+        $stmt->bind_param("isss", $data['deviceId'], $data['command'], $data['info'], $data['time']);
 
         // Execute the query
         if ($stmt->execute()) {
