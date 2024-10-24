@@ -22,7 +22,7 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 ### Register User
 
-**Endpoint**: `/api/register_user`
+**Endpoint**: `/api/register`
 
 **Method**: `POST`
 
@@ -55,7 +55,7 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 ### Login User
 
-**Endpoint**: `/api/login_user`
+**Endpoint**: `/api/login`
 
 **Method**: `POST`
 
@@ -91,7 +91,7 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 ### Register Device
 
-**Endpoint**: `/api/register_device`
+**Endpoint**: `/api/registerdevice`
 
 **Method**: `POST`
 
@@ -124,7 +124,7 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 ### Get Device Info
 
-**Endpoint**: `/api/get_device_info`
+**Endpoint**: `/api/device`
 
 **Method**: `GET`
 
@@ -132,7 +132,7 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 **Query Parameters**:
 ```url
-/api/get_device_info?token=device_token
+/api/device?token=device_token
 ```
 
 **Response**:
@@ -161,7 +161,7 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 ### Push Command to Device
 
-**Endpoint**: `/api/push_command`
+**Endpoint**: `/api/command`
 
 **Method**: `POST`
 
@@ -172,7 +172,8 @@ This API allows you to manage devices, authenticate users, and issue commands to
 {
   "token": "user_token",
   "deviceId": 1,
-  "command": "feed"
+  "command": "feed",
+  "info": "200g"
 }
 ```
 
@@ -194,7 +195,7 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 ### Execute Oldest Command
 
-**Endpoint**: `/api/execute_command`
+**Endpoint**: `/api/command`
 
 **Method**: `GET`
 
@@ -232,7 +233,7 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 ### Get User Info
 
-**Endpoint**: `/api/get_user_info`
+**Endpoint**: `/api/user`
 
 **Method**: `GET`
 
@@ -268,18 +269,19 @@ This API allows you to manage devices, authenticate users, and issue commands to
 
 #### Create Schedule
 
-**POST** `/api/schedule/create`
+**POST** `/api/schedule`
 
 This endpoint allows you to schedule a command for a device at a specific time.
 
 ```bash
-POST http://localhost:8000/api/schedule/create
+POST http://localhost:8000/api/schedule
 Content-Type: application/json
 
 {
   "token": "user_token_example",
   "deviceId": 1,
   "command": "feed",
+  "info": "200g",
   "time": "15:00:00"
 }
 ```
@@ -305,7 +307,7 @@ Content-Type: application/json
 This endpoint allows you to delete a scheduled command for a device.
 
 ```bash
-DELETE http://localhost:8000/api/schedule/delete
+DELETE http://localhost:8000/api/schedule
 Content-Type: application/json
 
 {
@@ -335,7 +337,7 @@ Content-Type: application/json
 This endpoint allows you to execute the oldest unexecuted scheduled command for a device.
 
 ```bash
-GET http://localhost:8000/api/schedule/execute?token=device_token_example
+GET http://localhost:8000/api/schedule?token=device_token_example
 ```
 
 **Request Parameters**:
