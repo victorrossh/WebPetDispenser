@@ -332,7 +332,7 @@ Content-Type: application/json
 
 #### Execute Schedule
 
-**GET** `/api/schedule/execute?token=device_token_example`
+**GET** `/api/schedule?token=device_token_example`
 
 This endpoint allows you to execute the oldest unexecuted scheduled command for a device.
 
