@@ -49,8 +49,7 @@ class Device {
             return array('status' => 'error', 'message' => 'Error creating device');
         }
     }
-    
-    
+      
     public function getdata($data) {
         // Get the user ID from the session token
         $userId = $this->getUserIdFromToken($data['token']);
@@ -87,13 +86,27 @@ class Device {
             while ($queueRow = $queueResult->fetch_assoc()) {
                 $queueData[] = $queueRow;
             }
+
+            // Fetch additional information from the DeviceScheduler for this device
+            $sql = "SELECT * FROM DeviceScheduler WHERE DeviceId = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param("i", $device['id']);
+            $stmt->execute();
+            $scheduleResult = $stmt->get_result();
+
+            // Fetch the schedule data for the device
+            $scheduleData = [];
+            while ($scheduleRow = $scheduleResult->fetch_assoc()) {
+                $scheduleData[] = $scheduleRow;
+            }
     
             // Return success response with device and queue information
             $stmt->close();
             return array(
                 'status' => 'success',
                 'device' => $device,
-                'queue' => $queueData
+                'queue' => $queueData,
+                'schedule' => $scheduleData
             );
         } else {
             // No device found
@@ -255,7 +268,7 @@ class Device {
     }
 
     // Execute the oldest unexecuted scheduled command for a device
-public function executeSchedule($deviceToken) {
+    public function executeSchedule($deviceToken) {
     // First, get the device ID using the token
     $sql = "SELECT id FROM Devices WHERE token = ?";
 
@@ -271,7 +284,7 @@ public function executeSchedule($deviceToken) {
         $deviceId = $device['id'];
 
         // Now get the oldest unexecuted command for the device from DeviceScheduler
-        $sql = "SELECT * FROM DeviceScheduler WHERE DeviceId = ? ORDER BY time ASC LIMIT 1";
+        $sql = "SELECT * FROM DeviceScheduler WHERE DeviceId = ? ORDER BY lastExecuted ASC LIMIT 1";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($sql);

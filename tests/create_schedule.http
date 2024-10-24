@@ -4,7 +4,7 @@ content-type: application/json
 {
 	"token": "hc3jCI5QpneRFbZnIIuGf05RKtvkDqpq",
 	"deviceId": "3",
-	"command": "testCommand",
-	"time": "12:43",
-	"info": "200"
+	"command": "testCommand2",
+	"time": "12:44",
+	"info": "300"
 }
