@@ -33,6 +33,10 @@ if (preg_match('/^\/api\//', $requestUri)) {
             require __DIR__ . '/../api/device.php';
             break;
         
+        case '/api/schedule':
+            require __DIR__ . '/../api/schedule.php';
+            break;
+        
         case '/api/registerdevice':
             require __DIR__ . '/../api/registerdevice.php';
             break;
