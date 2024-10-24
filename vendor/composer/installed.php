@@ -3,7 +3,7 @@
         'name' => 'mrshark45/webpetdispenser',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '30d8cd7ee4dd35ed89c8efa58ee989a2d251efbe',
+        'reference' => 'abef3d1692d218df7442843ec2ed07987948a5ea',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'mrshark45/webpetdispenser' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '30d8cd7ee4dd35ed89c8efa58ee989a2d251efbe',
+            'reference' => 'abef3d1692d218df7442843ec2ed07987948a5ea',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
