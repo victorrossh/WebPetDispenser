@@ -73,6 +73,30 @@
             outline: none;
         }
 
+        #UserPassword {
+            width: 74%;
+            padding: 10px 10px 10px 40px;
+            padding-right: 55px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background-color: #3a3a3a;
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        #password-visibility-toggle {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #bbb;
+            font-size: 14px;
+            background-color: transparent;
+            border: none;
+        }
+
         ::placeholder {
             color: #bbb;
         }
@@ -225,6 +249,22 @@
                 display: none;
             }
 
+            #UserID {
+                width: 100%;
+                padding: 10px;
+            }
+
+            #UserPassword {
+                width: 100%;
+                padding: 10px 50px 10px 10px;
+            }
+
+            #password-visibility-toggle {
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
             #container {
                 margin-top: -55px;
             }
@@ -246,10 +286,20 @@
         <div id="Forms">
             <img id="user-icon" src="./icons/user_login2.png" alt="Ícone de usuário">
             <h1>Entrar</h1>
+
+            <!--Login-->
             <div class="form-group">
                 <img class="null" src="./icons/user_icon.png" alt="ID Icon">
                 <input type="text" id="UserID" placeholder="Digite seu ID">
             </div>
+
+            <!-- Password -->
+            <div class="form-group" style="position: relative;">
+                <img class="null" src="./icons/lock.png" alt="Lock Icon">
+                <input type="password" id="UserPassword" placeholder="Senha">
+                <span id="password-visibility-toggle" onclick="togglePassword()">Show</span>
+            </div>
+
             <div id="remember-me-container">
                 <div id="remember-me">
                     <input type="checkbox" id="remember">
@@ -332,6 +382,20 @@
                 closeModal();
             }
         }
+
+        function togglePassword() {
+            var passwordField = document.getElementById("UserPassword");
+            var toggleButton = document.getElementById("password-visibility-toggle");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide"; // Muda para "Hide" quando a senha é visível
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show"; // Muda para "Show" quando a senha é ocultada
+            }
+        }
+
     </script>
 
 </body>
