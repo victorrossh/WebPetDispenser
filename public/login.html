@@ -178,7 +178,6 @@
             bottom: 0;
         }
 
-        /* Modal Estilos */
         #modal {
             display: none;
             position: fixed;
@@ -270,11 +269,25 @@
             }
 
             #image-container {
-                min-width: 80%;
+                min-width: 85%;
             }
 
             #btn {
                 width: 80%;
+            }
+
+            #modal-content {
+                width: 80%;
+                margin: 30% auto;
+                padding: 15px;
+            }
+
+            #email-input {
+                width: 90%;
+            }
+
+            #send-btn {
+                width: 70%;
             }
         }
     </style>
@@ -300,6 +313,7 @@
                 <span id="password-visibility-toggle" onclick="togglePassword()">Show</span>
             </div>
 
+            <!-- Remember Button / Forgot Password -->
             <div id="remember-me-container">
                 <div id="remember-me">
                     <input type="checkbox" id="remember">
@@ -322,6 +336,17 @@
             <img src="./icons/back_button.png" alt="Voltar" style="width: 32px; height: 32px;">
         </a>
 
+    </div>
+
+    <!-- Modal -->
+    <div id="modal">
+        <div id="modal-content">
+            <span id="close" onclick="closeModal()">&times;</span>
+            <h2>Esqueceu Seu ID?</h2>
+            <p>Não se preocupe, cuidaremos disso!</p>
+            <input type="email" id="email-input" placeholder="Email">
+            <button id="send-btn">Enviar</button>
+        </div>
     </div>
 
     <footer
@@ -356,19 +381,48 @@
         <p>&copy;2024 by Victor Ross - Faculdade Impacta</p>
     </footer>
 
-    <!-- Modal -->
-    <div id="modal">
-        <div id="modal-content">
-            <span id="close" onclick="closeModal()">&times;</span>
-            <h2>Esqueceu Seu ID ?</h2>
-            <p>Não se preocupe, enviaremos no seu E-mail</p>
-            <input type="email" id="email-input" placeholder="Email">
-            <button id="send-btn">Enviar</button>
-        </div>
-    </div>
-
     <!-- Script -->
     <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const savedUserID = localStorage.getItem("savedUserID");
+            const savedUserPassword = localStorage.getItem("savedUserPassword");
+
+            if (savedUserID && savedUserPassword) {
+                document.getElementById("UserID").value = savedUserID;
+                document.getElementById("UserPassword").value = savedUserPassword;
+                document.getElementById("remember").checked = true;
+            }
+        });
+
+        document.querySelector("#btn").addEventListener("click", function (event) {
+            const userID = document.getElementById("UserID").value;
+            const userPassword = document.getElementById("UserPassword").value;
+            const rememberMeChecked = document.getElementById("remember").checked;
+
+            if (rememberMeChecked) {
+                localStorage.setItem("savedUserID", userID);
+                localStorage.setItem("savedUserPassword", userPassword);
+            } else {
+
+                localStorage.removeItem("savedUserID");
+                localStorage.removeItem("savedUserPassword");
+            }
+        });
+
+        function togglePassword() {
+            var passwordField = document.getElementById("UserPassword");
+            var toggleButton = document.getElementById("password-visibility-toggle");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide";
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show";
+            }
+        }
+
         function openModal() {
             document.getElementById("modal").style.display = "block";
         }
@@ -380,19 +434,6 @@
         window.onclick = function (event) {
             if (event.target == document.getElementById("modal")) {
                 closeModal();
-            }
-        }
-
-        function togglePassword() {
-            var passwordField = document.getElementById("UserPassword");
-            var toggleButton = document.getElementById("password-visibility-toggle");
-
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                toggleButton.textContent = "Hide"; // Muda para "Hide" quando a senha é visível
-            } else {
-                passwordField.type = "password";
-                toggleButton.textContent = "Show"; // Muda para "Show" quando a senha é ocultada
             }
         }
 
