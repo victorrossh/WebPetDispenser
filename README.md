@@ -264,4 +264,94 @@ This API allows you to manage devices, authenticate users, and issue commands to
 }
 ```
 
----
+### Scheduling Management
+
+#### Create Schedule
+
+**POST** `/api/schedule/create`
+
+This endpoint allows you to schedule a command for a device at a specific time.
+
+```bash
+POST http://localhost:8000/api/schedule/create
+Content-Type: application/json
+
+{
+  "token": "user_token_example",
+  "deviceId": 1,
+  "command": "feed",
+  "time": "15:00:00"
+}
+```
+
+**Request Fields**:
+- `token`: The user’s session token.
+- `deviceId`: The ID of the device for which the schedule is created.
+- `command`: The command to schedule.
+- `time`: The time at which the command should be executed.
+
+**Response**:
+```json
+{
+  "status": "success",
+  "message": "Schedule created successfully"
+}
+```
+
+#### Delete Schedule
+
+**DELETE** `/api/schedule/delete`
+
+This endpoint allows you to delete a scheduled command for a device.
+
+```bash
+DELETE http://localhost:8000/api/schedule/delete
+Content-Type: application/json
+
+{
+  "token": "user_token_example",
+  "deviceId": 1,
+  "scheduleId": 10
+}
+```
+
+**Request Fields**:
+- `token`: The user’s session token.
+- `deviceId`: The ID of the device for which the schedule is being deleted.
+- `scheduleId`: The ID of the scheduled command to delete.
+
+**Response**:
+```json
+{
+  "status": "success",
+  "message": "Schedule deleted successfully"
+}
+```
+
+#### Execute Schedule
+
+**GET** `/api/schedule/execute?token=device_token_example`
+
+This endpoint allows you to execute the oldest unexecuted scheduled command for a device.
+
+```bash
+GET http://localhost:8000/api/schedule/execute?token=device_token_example
+```
+
+**Request Parameters**:
+- `token`: The device’s token to identify the device for which the scheduled command should be executed.
+
+**Response**:
+```json
+{
+  "status": "success",
+  "message": "Command executed successfully",
+  "command": {
+    "id": 1,
+    "DeviceId": 1,
+    "command": "feed",
+    "time": "15:00:00",
+    "lastExecuted": "2024-10-24 12:00:00"
+  }
+}
+```
