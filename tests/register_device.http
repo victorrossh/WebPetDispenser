@@ -1,7 +1,7 @@
-POST http://localhost:8000/api/registerdevice HTTP/1.1
+POST http://localhost:8000/api/device HTTP/1.1
 content-type: application/json
 
 {
-	"token": "rNR1bBvuMUDbUyP6TWDXhxVDq8K2ZfDj",
+	"token": "kP6pYrqftkIznyF8bbzDa9VdRFoA3K8j",
 	"name": "testDevice"
 }

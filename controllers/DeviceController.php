@@ -2,46 +2,45 @@
 require_once '../models/Device.php';
 
 class DeviceController {
-    public function create($data) {
+    public function create($userToken, $deviceName) {
         $device = new Device();
-		$response = $device->create($data);
+		$response = $device->create($userToken, $deviceName);
         return $response;
     }
 
-    public function getdata($data) {
+    public function getDevice($userToken, $deviceId) {
         $device = new Device();
-		$response = $device->getdata($data);
+		$response = $device->getDevice($userToken, $deviceId);
         return $response;
     }
 
-    public function pushcommand($data) {
+    public function addCommandToQueue($userToken, $deviceId, $command, $info) {
         $device = new Device();
-		$response = $device->addCommandToQueue($data);
-        return $response;
-    }
-    
-
-    public function executecommand($data) {
-        $device = new Device();
-		$response = $device->executeCommandFromQueue($data);
+		$response = $device->addCommandToQueue($userToken, $deviceId, $command, $info);
         return $response;
     }
 
-    public function createschedule($data) {
+    public function executeCommandFromQueue($deviceToken) {
         $device = new Device();
-		$response = $device->createSchedule($data);
+		$response = $device->executeCommandFromQueue($deviceToken);
         return $response;
     }
 
-    public function deleteschedule($data) {
+    public function createSchedule($userToken, $deviceId, $command, $info, $time) {
         $device = new Device();
-		$response = $device->deleteSchedule($data);
+		$response = $device->createSchedule($userToken, $deviceId, $command, $info, $time);
         return $response;
     }
 
-    public function executeschedule($data) {
+    public function deleteSchedule($userToken, $deviceId, $scheduleId) {
         $device = new Device();
-		$response = $device->executeSchedule($data);
+		$response = $device->deleteSchedule($userToken, $deviceId, $scheduleId);
+        return $response;
+    }
+
+    public function executeSchedule($deviceToken) {
+        $device = new Device();
+		$response = $device->executeSchedule($deviceToken);
         return $response;
     }
 }

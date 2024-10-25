@@ -2,21 +2,21 @@
 require_once '../models/User.php';
 
 class UserController {
-    public function create($data) {
+    public function create($name, $email, $password) {
         $user = new User();
-        $response = $user->create($data);
+        $response = $user->create($name, $email, $password);
         return $response;
     }
 
-	public function login($data) {
+	public function login($email, $password) {
         $user = new User();
-		$response = $user->login($data);
+		$response = $user->login($email, $password);
         return $response;
     }
 
-    public function getdata($data) {
+    public function getUser($userToken) {
         $user = new User();
-		$response = $user->getdata($data);
+		$response = $user->getUser($userToken);
         return $response;
     }
 }

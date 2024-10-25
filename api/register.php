@@ -11,7 +11,7 @@ $data = json_decode($rawData, true);
 if (isset($data['name']) && isset($data['password']) && isset($data['email'])) {
     // Call the register function in the controller
     $controller = new UserController();
-    $response = $controller->create($data);
+    $response = $controller->create($data['name'], $data['email'], $data['password']);
 
     // Return the response in JSON format
     echo json_encode($response);

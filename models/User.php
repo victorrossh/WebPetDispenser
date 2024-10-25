@@ -14,7 +14,7 @@ class User {
         }
     }
 
-    public function create($data) {
+    public function create($name, $email, $password) {
         // Prepare the SQL query to insert a new user (ignore duplicates based on unique constraints)
         $sql = "INSERT IGNORE INTO Users (name, email, password) VALUES (?, ?, ?)";
     
@@ -22,10 +22,10 @@ class User {
         $stmt = $this->conn->prepare($sql);
     
         // Hash the password before storing it
-        $hashedPassword = password_hash($data["password"], PASSWORD_BCRYPT);
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     
         // Bind the parameters (name, email, password)
-        $stmt->bind_param("sss", $data["name"], $data["email"], $hashedPassword);
+        $stmt->bind_param("sss", $name, $email, $hashedPassword);
     
         // Execute the query and check if the insertion was successful
         if ($stmt->execute()) {
@@ -33,7 +33,7 @@ class User {
             if ($stmt->affected_rows > 0) {
                 // Close the statement and log the user in
                 $stmt->close();
-                return $this->login($data);
+                return $this->login($email, $password);
             } else {
                 // If no rows were affected, the user already exists
                 $stmt->close();
@@ -45,7 +45,7 @@ class User {
         }
     }
     
-    public function login($data) {
+    public function login($email, $password) {
         // Prepare the SQL query to select the user by email
         $sql = "SELECT id, name, password, admin FROM Users WHERE email = ?";
     
@@ -53,7 +53,7 @@ class User {
         $stmt = $this->conn->prepare($sql);
     
         // Bind the email to the placeholder
-        $stmt->bind_param("s", $data["email"]);
+        $stmt->bind_param("s", $email);
     
         // Execute the query
         $stmt->execute();
@@ -66,7 +66,7 @@ class User {
             $row = $result->fetch_assoc();
     
             // Verify the provided password against the stored hash
-            if (password_verify($data["password"], $row["password"])) {
+            if (password_verify($password, $row["password"])) {
                 // Password is correct, proceed with login
                 $stmt->close();
     
@@ -92,7 +92,7 @@ class User {
         }
     }
 
-    public function getdata($data) {
+    public function getUser($userToken) {
         // Prepare the SQL query to select the user by login token
         $sql = "SELECT u.id, u.name, u.email, u.admin FROM Users u WHERE u.id = (SELECT UserId From Sessions s WHERE s.token = ?)";
     
@@ -100,7 +100,7 @@ class User {
         $stmt = $this->conn->prepare($sql);
     
         // Bind the token to the placeholder
-        $stmt->bind_param("s", $data["token"]);
+        $stmt->bind_param("s", $userToken);
     
         // Execute the query
         $stmt->execute();

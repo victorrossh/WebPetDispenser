@@ -2,7 +2,7 @@ DELETE http://localhost:8000/api/schedule HTTP/1.1
 content-type: application/json
 
 {
-	"token": "hc3jCI5QpneRFbZnIIuGf05RKtvkDqpq",
-	"deviceId": "3",
-	"scheduleId": "1"
+	"token": "kP6pYrqftkIznyF8bbzDa9VdRFoA3K8j",
+	"deviceId": "4",
+	"scheduleId": "5"
 }

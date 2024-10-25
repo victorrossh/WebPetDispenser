@@ -11,7 +11,7 @@ $data = json_decode($rawData, true);
 if (isset($data['email']) && isset($data['password'])) {
     // Call the login function in the controller
     $controller = new UserController();
-    $response = $controller->login($data);
+    $response = $controller->login($data['email'], $data['password']);
 
     // Return the response in JSON format
     echo json_encode($response);

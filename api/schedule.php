@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if token, deviceId, command, info and time are set in the request
     if (isset($data['token']) && isset($data['deviceId']) && isset($data['command']) && isset($data['time']) && isset($data['info'])) {
         // Call the pushcommand function in the controller
-        $response = $controller->createschedule($data);
+        $response = $controller->createSchedule($data['token'], $data['deviceId'], $data['command'], $data['info'], $data['time']);
 
         // Return the response in JSON format
         echo json_encode($response);
@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Get the token from the query string
         $deviceToken = $_GET['token'];
 
-        // Call the executeschedule function in the controller
-        $response = $controller->executeschedule($deviceToken);
+        // Call the executeSchedule function in the controller
+        $response = $controller->executeSchedule($deviceToken);
 
         // Return the response in JSON format
         echo json_encode($response);
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if token, deviceId, command and time are set in the request
     if (isset($data['token']) && isset($data['deviceId']) && isset($data['scheduleId'])) {
         // Call the pushcommand function in the controller
-        $response = $controller->deleteschedule($data);
+        $response = $controller->deleteschedule($data['token'], $data['deviceId'], $data['scheduleId']);
 
         // Return the response in JSON format
         echo json_encode($response);

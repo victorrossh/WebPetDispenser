@@ -1,0 +1,3 @@
+GET http://localhost:8000/api/device?token=kP6pYrqftkIznyF8bbzDa9VdRFoA3K8j&deviceId=4 HTTP/1.1
+content-type: application/json
+

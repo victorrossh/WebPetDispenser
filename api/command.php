@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if token, deviceId, command and info are set in the request
     if (isset($data['token']) && isset($data['deviceId']) && isset($data['command']) && isset($data['info'])) {
-        // Call the pushcommand function in the controller
-        $response = $controller->pushcommand($data);
+        // Call the addCommandToQueue function in the controller
+        $response = $controller->addCommandToQueue($data['token'], $data['deviceId'], $data['command'], $data['info']);
 
         // Return the response in JSON format
         echo json_encode($response);
@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Get the token from the query string
         $deviceToken = $_GET['token'];
 
-        // Call the executecommand function in the controller
-        $response = $controller->executecommand($deviceToken);
+        // Call the executeCommandFromQueue function in the controller
+        $response = $controller->executeCommandFromQueue($deviceToken);
 
         // Return the response in JSON format
         echo json_encode($response);
