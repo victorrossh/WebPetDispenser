@@ -5,7 +5,7 @@
 ---
 
 ### 1. Login
-- **URL**: `/login.php`
+- **URL**: `api/login.php`
 - **Method**: `POST`
 - **Description**: Realiza o login de um usuário.
 - **Request Body**:
@@ -18,7 +18,7 @@
 ---
 
 ### 2. Register
-- **URL**: `/register.php`
+- **URL**: `api/register.php`
 - **Method**: `POST`
 - **Description**: Registra um novo usuário.
 - **Request Body**:
@@ -32,7 +32,7 @@
 ---
 
 ### 3. User Information
-- **URL**: `/user.php`
+- **URL**: `api/user.php`
 - **Method**: `GET`
 - **Description**: Retorna informações do usuário autenticado.
 - **Query Parameters**:
@@ -44,7 +44,7 @@
 ---
 
 ### 4. Device Information
-- **URL**: `/device.php`
+- **URL**: `api/device.php`
 - **Method**: `GET` ou `POST`
 - **Description**:
   - `GET`: Retorna informações de um dispositivo.
@@ -62,7 +62,7 @@
 ---
 
 ### 5. Command Queue
-- **URL**: `/command.php`
+- **URL**: `api/command.php`
 - **Method**: `POST` ou `GET`
 - **Description**:
   - `POST`: Adiciona um comando à fila de um dispositivo.
@@ -81,7 +81,7 @@
 ---
 
 ### 6. Scheduling Commands
-- **URL**: `/schedule.php`
+- **URL**: `api/schedule.php`
 - **Method**: `POST`, `GET`, `DELETE`
 - **Description**:
   - `POST`: Agenda um comando para execução.
