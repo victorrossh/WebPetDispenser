@@ -1,2 +1,2 @@
-GET http://localhost:8000/api/schedule?token=5d07be4cfe7597c434f5bea588672889 HTTP/1.1
+GET http://localhost:8000/api/schedule?token=5d07be4cfe7597c434f5bea588672889&id=7 HTTP/1.1
 content-type: application/json

@@ -8,9 +8,9 @@ class DeviceController {
         return $response;
     }
 
-    public function getDevice($userToken, $deviceId) {
+    public function getDevice($deviceToken) {
         $device = new Device();
-		$response = $device->getDevice($userToken, $deviceId);
+		$response = $device->getDevice($deviceToken);
         return $response;
     }
 
@@ -38,9 +38,9 @@ class DeviceController {
         return $response;
     }
 
-    public function executeSchedule($deviceToken) {
+    public function executeSchedule($deviceToken, $deviceId) {
         $device = new Device();
-		$response = $device->executeSchedule($deviceToken);
+		$response = $device->executeSchedule($deviceToken, $deviceId);
         return $response;
     }
 }

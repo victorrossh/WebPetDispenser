@@ -51,7 +51,6 @@
   - `POST`: Cria um novo dispositivo.
 - **GET Parameters**:
   - `token` (string): Token de autenticação do dispositivo.
-  - `deviceId` (string): ID do dispositivo.
 - **POST Body**:
   - `token` (string): Token de autenticação do dispositivo.
   - `name` (string): Nome do dispositivo.
@@ -95,6 +94,7 @@
   - `info` (string): Informações adicionais.
 - **GET Parameters**:
   - `token` (string): Token de autenticação.
+  - `id` (string): ID do agendamento.
 - **DELETE Body**:
   - `token` (string): Token de autenticação.
   - `deviceId` (string): ID do dispositivo.

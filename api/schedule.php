@@ -30,22 +30,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Handle GET request - Execute the oldest command
-    // Check if token is provided as a query parameter
-    if (isset($_GET['token'])) {
+    // Check if token and id are provided as a query parameter
+    if (isset($_GET['token']) && isset($_GET['id'])) {
         // Get the token from the query string
         $deviceToken = $_GET['token'];
+        $scheduleId = $_GET['id'];
 
         // Call the executeSchedule function in the controller
-        $response = $controller->executeSchedule($deviceToken);
+        $response = $controller->executeSchedule($deviceToken, $scheduleId);
 
         // Return the response in JSON format
         echo json_encode($response);
     } else {
-        // If token is missing, return an error
+        // If token or id are missing, return an error
         http_response_code(400); // Bad Request
         echo json_encode([
             'status' => 'error',
-            'message' => 'Device token is required'
+            'message' => 'Device Token and Device Id are required'
         ]);
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {

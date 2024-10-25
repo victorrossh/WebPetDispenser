@@ -66,28 +66,12 @@ class Device
         }
     }
 
-    public function getDevice($userToken, $deviceId)
+    public function getDevice($deviceToken)
     {
-        // Get the user ID from the session token
-        $userId = $this->getUserIdFromToken($userToken);
-
-        if (!$userId) {
-            // Invalid token or session expired
-            return ["status" => "error", "message" => "Invalid user token"];
-        }
-
-        // Check if the device belongs to the user
-        if (!$this->isDeviceOwnedByUser($deviceId, $userId)) {
-            return [
-                "status" => "error",
-                "message" => "Unauthorized access to the device",
-            ];
-        }
-
         // Prepare the SQL query to select device information
-        $sql = "SELECT d.id, d.name FROM Devices d WHERE d.id = ?";
+        $sql = "SELECT d.id, d.name FROM Devices d WHERE d.token = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $deviceId);
+        $stmt->bind_param("i", $deviceToken);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -339,7 +323,7 @@ class Device
     }
 
     // Execute the oldest unexecuted scheduled command for a device
-    public function executeSchedule($deviceToken)
+    public function executeSchedule($deviceToken, $scheduleId)
     {
         // First, get the device ID using the token
         $sql = "SELECT id FROM Devices WHERE token = ?";
@@ -357,11 +341,11 @@ class Device
 
             // Now get the oldest unexecuted command for the device from DeviceScheduler
             $sql =
-                "SELECT * FROM DeviceScheduler WHERE DeviceId = ? ORDER BY lastExecuted ASC LIMIT 1";
+                "SELECT * FROM DeviceScheduler WHERE DeviceId = ? AND id = ?";
 
             // Prepare the statement
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("i", $deviceId);
+            $stmt->bind_param("ii", $deviceId, $scheduleId);
             $stmt->execute();
             $result = $stmt->get_result();
 

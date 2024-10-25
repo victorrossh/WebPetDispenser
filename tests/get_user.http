@@ -1,6 +1,2 @@
-POST http://localhost:8000/api/user HTTP/1.1
+GET http://localhost:8000/api/user?token=kP6pYrqftkIznyF8bbzDa9VdRFoA3K8j HTTP/1.1
 content-type: application/json
-
-{
-	"token": "hc3jCI5QpneRFbZnIIuGf05RKtvkDqpq"
-}

@@ -2,16 +2,16 @@
 require_once "../controllers/DeviceController.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    // Check if token and deviceId are set in the request
-    if (isset($_GET["token"]) && isset($_GET["deviceId"])) {
+    // Check if device token is set in the request
+    if (isset($_GET["token"])) {
         // Call the getDevice function in the controller
         $controller = new DeviceController();
-        $response = $controller->getDevice($_GET["token"], $_GET["deviceId"]);
+        $response = $controller->getDevice($_GET["token"]);
 
         // Return the response in JSON format
         echo json_encode($response);
     } else {
-        // If token or deviceId are missing, return an error
+        // If token is missing, return an error
         http_response_code(400); // Bad Request
         echo json_encode([
             "status" => "error",
