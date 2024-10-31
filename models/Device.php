@@ -6,7 +6,7 @@ class Device
     public function __construct()
     {
         // Load the database configuration
-        $dbConfig = require_once __DIR__ . "/../config/database.php";
+        $dbConfig = require_once __DIR__ . "/../config/Database.php";
 
         // Create a connection using the loaded config
         $this->conn = new mysqli(
@@ -119,6 +119,7 @@ class Device
         if ($result->num_rows > 0) {
             $device = $result->fetch_assoc();
 
+            /*
             // Fetch additional information from the DeviceQueue for this device
             $sql = "SELECT * FROM DeviceQueue WHERE DeviceId = ?";
             $stmt = $this->conn->prepare($sql);
@@ -131,6 +132,7 @@ class Device
             while ($queueRow = $queueResult->fetch_assoc()) {
                 $queueData[] = $queueRow;
             }
+            */
 
             // Fetch additional information from the DeviceScheduler for this device
             $sql = "SELECT * FROM DeviceScheduler WHERE DeviceId = ?";
@@ -150,7 +152,7 @@ class Device
             return [
                 "status" => "success",
                 "device" => $device,
-                "queue" => $queueData,
+                //"queue" => $queueData,
                 "schedule" => $scheduleData,
             ];
         } else {
