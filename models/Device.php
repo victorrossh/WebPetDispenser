@@ -66,6 +66,47 @@ class Device
         }
     }
 
+    public function delete($userToken, $deviceId)
+    {
+        // Verify the user using the session token
+        $userId = $this->getUserIdFromToken($userToken);
+        if (!$userId) {
+            return ["status" => "error", "message" => "Invalid user token"];
+        }
+
+        // Check if the device is owned by this user
+        if (!$this->isDeviceOwnedByUser($deviceId, $userId)) {
+            return [
+                "status" => "error",
+                "message" => "User does not own this device",
+            ];
+        }
+
+        // Prepare the SQL query to delete the scheduled command
+        $sql = "DELETE FROM Devices WHERE id = ?";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($sql);
+
+        // Bind the schedule ID and device ID to the placeholders
+        $stmt->bind_param("i", $deviceId);
+
+        // Execute the query
+        if ($stmt->execute() && $stmt->affected_rows > 0) {
+            $stmt->close();
+            return [
+                "status" => "success",
+                "message" => "Device deleted successfully",
+            ];
+        } else {
+            $stmt->close();
+            return [
+                "status" => "error",
+                "message" => "Error deleting device or device not found",
+            ];
+        }
+    }
+
     public function getDevice($deviceToken)
     {
         // Prepare the SQL query to select device information

@@ -8,6 +8,12 @@ class DeviceController {
         return $response;
     }
 
+    public function delete($userToken, $deviceId) {
+        $device = new Device();
+		$response = $device->delete($userToken, $deviceId);
+        return $response;
+    }
+
     public function getDevice($deviceToken) {
         $device = new Device();
 		$response = $device->getDevice($deviceToken);
