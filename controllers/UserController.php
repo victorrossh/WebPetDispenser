@@ -14,6 +14,12 @@ class UserController {
         return $response;
     }
 
+    public function getLogin($userToken) {
+        $user = new User();
+		$response = $user->getLogin($userToken);
+        return $response;
+    }
+
     public function logout($userToken) {
         $user = new User();
 		$response = $user->logout($userToken);

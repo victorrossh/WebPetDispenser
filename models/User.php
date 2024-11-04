@@ -92,6 +92,50 @@ class User {
         }
     }
 
+    public function getLogin($userToken) {
+        // Prepare a query to check the token in the sessions table
+        $sql = "SELECT u.id, u.name, u.email, u.admin 
+                FROM Users u 
+                INNER JOIN Sessions s ON u.id = s.UserId 
+                WHERE s.token = ? AND s.expireOn > NOW()";
+    
+        // Prepare the statement
+        $stmt = $this->conn->prepare($sql);
+        
+        // Bind the token to the parameter
+        $stmt->bind_param("s", $userToken);
+    
+        // Execute the query
+        $stmt->execute();
+    
+        // Get the result set
+        $result = $stmt->get_result();
+        
+        // Check if the token is valid and an active session was found
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+    
+            // Return the user's information
+            $stmt->close();
+            return [
+                'status' => 'success',
+                'user' => [
+                    'id' => $user["id"],
+                    'name' => $user["name"],
+                    'email' => $user["email"],
+                    'admin' => $user["admin"]
+                ]
+            ];
+        } else {
+            // Invalid token or session has expired
+            $stmt->close();
+            return [
+                'status' => 'error',
+                'message' => 'Invalid token'
+            ];
+        }
+    }    
+
     public function logout($userToken) {
         // Prepare the SQL query to delete the session by token
         $sql = "DELETE FROM Sessions WHERE token = ?";

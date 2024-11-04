@@ -1,118 +1,321 @@
-## WebPetDispenser API Documentation
+# WebPetDispenser API Documentation
+
+### Overview
+This API provides endpoints for managing users, devices, commands, and schedules in the WebPetDispenser system. Each endpoint returns JSON responses, and the `token` parameter is used to authenticate most requests.
 
 ---
 
-### 1. Login
-- **URL**: `api/login.php`
+### Endpoints
+
+---
+
+#### 1. User Registration
+
+- **URL**: `/api/register.php`
 - **Method**: `POST`
-- **Description**: Realiza o login de um usuário.
+- **Description**: Register a new user.
 - **Request Body**:
-  - `email` (string): Email do usuário.
-  - `password` (string): Senha do usuário.
+  - `name` (string): User's name.
+  - `email` (string): User's email.
+  - `password` (string): User's password.
 - **Response**:
-  - `name` (string): Nome do usuário.
-  - `token` (string): Token de autenticação gerado.
-  - `admin` (boolean): Status de administrador do usuário.
-  - **Em caso de erro**:
-    - `status`: "error"
-    - `message`: "Invalid password" ou "User not found"
+  - **Success**:
+    ```json
+    {
+      "name": "User's Name",
+      "token": "authentication_token",
+      "admin": false
+    }
+    ```
+  - **Error - User Already Exists**:
+    ```json
+    {
+      "status": "error",
+      "message": "User already exists"
+    }
+    ```
+  - **Error - Creation Error**:
+    ```json
+    {
+      "status": "error",
+      "message": "Error creating user"
+    }
+    ```
 
 ---
 
-### 2. Register
-- **URL**: `api/register.php`
+#### 2. User Login
+
+- **URL**: `/api/login.php`
 - **Method**: `POST`
-- **Description**: Registra um novo usuário.
+- **Description**: Authenticate a user and generate an access token.
 - **Request Body**:
-  - `name` (string): Nome do usuário.
-  - `email` (string): Email do usuário.
-  - `password` (string): Senha do usuário.
+  - `email` (string): User's email.
+  - `password` (string): User's password.
 - **Response**:
-  - Em caso de sucesso, retornará o mesmo que o endpoint de login.
-  - **Em caso de erro**:
-    - `status`: "error"
-    - `message`: "User already exists" ou "Error creating user"
+  - **Success**:
+    ```json
+    {
+      "name": "User's Name",
+      "token": "authentication_token",
+      "admin": false
+    }
+    ```
+  - **Error - Invalid Password**:
+    ```json
+    {
+      "status": "error",
+      "message": "Invalid password"
+    }
+    ```
+  - **Error - User Not Found**:
+    ```json
+    {
+      "status": "error",
+      "message": "User not found"
+    }
+    ```
 
 ---
 
-### 3. User Information
-- **URL**: `api/user.php`
+#### 3. Verify Login (Token Validation)
+
+- **URL**: `/api/login.php`
 - **Method**: `GET`
-- **Description**: Retorna informações do usuário autenticado.
-- **Query Parameters**:
-  - `token` (string): Token de autenticação do usuário.
+- **Description**: Check if a user's session token is valid.
+- **Query Parameter**:
+  - `token` (string): User's authentication token.
 - **Response**:
-  - `status`: "success"
-  - `user`: Detalhes do usuário como `id`, `name`, `email`, e `admin`
-  - `devices`: Lista de dispositivos do usuário
-  - **Em caso de erro**:
-    - `status`: "error"
-    - `message`: "Invalid Token" ou "No devices found with the provided user"
+  - **Success**:
+    ```json
+    {
+      "status": "success",
+      "user": {
+        "id": "user_id",
+        "name": "User's Name",
+        "email": "user@example.com",
+        "admin": false
+      }
+    }
+    ```
+  - **Error - Invalid Token**:
+    ```json
+    {
+      "status": "error",
+      "message": "Invalid token"
+    }
+    ```
 
 ---
 
-### 4. Device Information
-- **URL**: `api/device.php`
-- **Method**: `GET` ou `POST`
-- **Description**:
-  - `GET`: Retorna informações de um dispositivo.
-  - `POST`: Cria um novo dispositivo.
-- **GET Parameters**:
-  - `token` (string): Token de autenticação do dispositivo.
-- **POST Body**:
-  - `token` (string): Token de autenticação do dispositivo.
-  - `name` (string): Nome do dispositivo.
+#### 4. User Logout
+
+- **URL**: `/api/logout.php`
+- **Method**: `POST`
+- **Description**: Log out the user and invalidate the session token.
+- **Request Body**:
+  - `token` (string): User's authentication token.
 - **Response**:
-  - `status`: "success" ou "error"
-  - `message`: Mensagem sobre o sucesso ou erro da operação
-  - `deviceToken` (string): Token único do dispositivo criado (em caso de sucesso na criação)
-  - **Erros comuns**: "Invalid user token", "Failed to create device", "Error creating device", "No device found"
+  - **Success**:
+    ```json
+    {
+      "status": "success",
+      "message": "Logged out successfully"
+    }
+    ```
+  - **Error - Invalid Token or Session Not Found**:
+    ```json
+    {
+      "status": "error",
+      "message": "Invalid token or session not found"
+    }
+    ```
+  - **Error - Logout Failed**:
+    ```json
+    {
+      "status": "error",
+      "message": "Logout failed"
+    }
+    ```
 
 ---
 
-### 5. Command Queue
-- **URL**: `api/command.php`
-- **Method**: `POST` ou `GET`
-- **Description**:
-  - `POST`: Adiciona um comando à fila de um dispositivo.
-  - `GET`: Executa o comando mais antigo da fila.
-- **POST Body**:
-  - `token` (string): Token de autenticação.
-  - `deviceId` (string): ID do dispositivo.
-  - `command` (string): Comando a ser executado.
-  - `info` (string): Informações adicionais.
-- **GET Parameters**:
-  - `token` (string): Token de autenticação.
+#### 5. Get User Information
+
+- **URL**: `/api/user.php`
+- **Method**: `GET`
+- **Description**: Retrieve information about the authenticated user and their devices.
+- **Query Parameter**:
+  - `token` (string): User's authentication token.
 - **Response**:
-  - `status`: "success" ou "error"
-  - `message`: "Command added to queue" ou "Command executed"
-  - `command`: Detalhes do comando executado (somente em GET)
-  - **Erros comuns**: "Invalid user token", "Unauthorized access to the device", "Failed to add command to queue", "No unexecuted commands found"
+  - **Success**:
+    ```json
+    {
+      "status": "success",
+      "user": {
+        "id": "user_id",
+        "name": "User's Name",
+        "email": "user@example.com",
+        "admin": false
+      },
+      "devices": [
+        {
+          "id": "device_id",
+          "name": "Device Name",
+          "token": "device_token"
+        },
+        ...
+      ]
+    }
+    ```
+  - **Error - Invalid Token**:
+    ```json
+    {
+      "status": "error",
+      "message": "Invalid Token"
+    }
+    ```
+  - **Error - No Devices Found**:
+    ```json
+    {
+      "status": "error",
+      "message": "No devices found with the provided user"
+    }
+    ```
 
 ---
 
-### 6. Scheduling Commands
-- **URL**: `api/schedule.php`
-- **Method**: `POST`, `GET`, `DELETE`
-- **Description**:
-  - `POST`: Agenda um comando para execução.
-  - `GET`: Executa o comando agendado mais antigo.
-  - `DELETE`: Remove um comando agendado.
-- **POST Body**:
-  - `token` (string): Token de autenticação.
-  - `deviceId` (string): ID do dispositivo.
-  - `command` (string): Comando a ser executado.
-  - `time` (string): Horário para execução.
-  - `info` (string): Informações adicionais.
-- **GET Parameters**:
-  - `token` (string): Token de autenticação.
-  - `id` (string): ID do agendamento.
-- **DELETE Body**:
-  - `token` (string): Token de autenticação.
-  - `deviceId` (string): ID do dispositivo.
-  - `scheduleId` (string): ID do agendamento.
-- **Response**:
-  - `status`: "success" ou "error"
-  - `message`: "Schedule created successfully", "Command executed successfully", "Schedule deleted successfully"
-  - `command`: Detalhes do comando executado (somente em GET)
-  - **Erros comuns**: "Invalid user token", "User does not own this device", "Error creating schedule", "No scheduled commands found", "Error deleting schedule or schedule not found" 
+#### 6. Device Management
+
+- **Create Device**
+  - **URL**: `/api/device.php`
+  - **Method**: `POST`
+  - **Description**: Create a new device for the user.
+  - **Request Body**:
+    - `token` (string): User's authentication token.
+    - `name` (string): Device name.
+  - **Response**:
+    - **Success**:
+      ```json
+      {
+        "status": "success",
+        "message": "Device created successfully",
+        "deviceToken": "new_device_token"
+      }
+      ```
+    - **Error - Invalid User Token**:
+      ```json
+      {
+        "status": "error",
+        "message": "Invalid user token"
+      }
+      ```
+
+- **Delete Device**
+  - **URL**: `/api/device.php`
+  - **Method**: `DELETE`
+  - **Description**: Delete a device owned by the user.
+  - **Request Body**:
+    - `token` (string): User's authentication token.
+    - `deviceId` (int): Device ID.
+  - **Response**:
+    - **Success**:
+      ```json
+      {
+        "status": "success",
+        "message": "Device deleted successfully"
+      }
+      ```
+    - **Error - Unauthorized**:
+      ```json
+      {
+        "status": "error",
+        "message": "User does not own this device"
+      }
+      ```
+    - **Error - Device Not Found**:
+      ```json
+      {
+        "status": "error",
+        "message": "Error deleting device or device not found"
+      }
+      ```
+
+---
+
+#### 7. Command Queue Management
+
+- **Add Command to Queue**
+  - **URL**: `/api/command.php`
+  - **Method**: `POST`
+  - **Request Body**:
+    - `token` (string): User's authentication token.
+    - `deviceId` (int): Device ID.
+    - `command` (string): Command to be added to the queue.
+    - `info` (string, optional): Additional information about the command.
+  - **Response**:
+    - **Success**:
+      ```json
+      {
+        "status": "success",
+        "message": "Command added to queue"
+      }
+      ```
+    - **Error - Unauthorized**:
+      ```json
+      {
+        "status": "error",
+        "message": "Unauthorized access to the device"
+      }
+      ```
+
+---
+
+#### 8. Scheduling Commands
+
+- **Create Schedule**
+  - **URL**: `/api/schedule.php`
+  - **Method**: `POST`
+  - **Request Body**:
+    - `token` (string): User's authentication token.
+    - `deviceId` (int): Device ID.
+    - `command` (string): Command to be scheduled.
+    - `time` (string): Scheduled time in `YYYY-MM-DD HH:MM:SS` format.
+  - **Response**:
+    - **Success**:
+      ```json
+      {
+        "status": "success",
+        "message": "Schedule created successfully"
+      }
+      ```
+    - **Error - Unauthorized**:
+      ```json
+      {
+        "status": "error",
+        "message": "User does not own this device"
+      }
+      ```
+
+- **Delete Schedule**
+  - **URL**: `/api/schedule.php`
+  - **Method**: `DELETE`
+  - **Request Body**:
+    - `token` (string): User's authentication token.
+    - `deviceId` (int): Device ID.
+    - `scheduleId` (int): Schedule ID.
+  - **Response**:
+    - **Success**:
+      ```json
+      {
+        "status": "success",
+        "message": "Schedule deleted successfully"
+      }
+      ```
+    - **Error - Not Found**:
+      ```json
+      {
+        "status": "error",
+        "message": "Error deleting schedule or schedule not found"
+      }
+      ```
