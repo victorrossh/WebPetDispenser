@@ -1,6 +1,4 @@
-# WebPetDispenser API Documentation
-
-## Endpoints
+## WebPetDispenser API Documentation
 
 ---
 
@@ -12,8 +10,12 @@
   - `email` (string): Email do usuário.
   - `password` (string): Senha do usuário.
 - **Response**:
-  - `status`: Indica o resultado da operação.
-  - `message`: Mensagem de sucesso ou erro.
+  - `name` (string): Nome do usuário.
+  - `token` (string): Token de autenticação gerado.
+  - `admin` (boolean): Status de administrador do usuário.
+  - **Em caso de erro**:
+    - `status`: "error"
+    - `message`: "Invalid password" ou "User not found"
 
 ---
 
@@ -26,8 +28,10 @@
   - `email` (string): Email do usuário.
   - `password` (string): Senha do usuário.
 - **Response**:
-  - `status`: Indica o resultado da operação.
-  - `message`: Mensagem de sucesso ou erro.
+  - Em caso de sucesso, retornará o mesmo que o endpoint de login.
+  - **Em caso de erro**:
+    - `status`: "error"
+    - `message`: "User already exists" ou "Error creating user"
 
 ---
 
@@ -38,8 +42,12 @@
 - **Query Parameters**:
   - `token` (string): Token de autenticação do usuário.
 - **Response**:
-  - `status`: Indica o resultado da operação.
-  - `message`: Mensagem de sucesso ou erro.
+  - `status`: "success"
+  - `user`: Detalhes do usuário como `id`, `name`, `email`, e `admin`
+  - `devices`: Lista de dispositivos do usuário
+  - **Em caso de erro**:
+    - `status`: "error"
+    - `message`: "Invalid Token" ou "No devices found with the provided user"
 
 ---
 
@@ -55,8 +63,10 @@
   - `token` (string): Token de autenticação do dispositivo.
   - `name` (string): Nome do dispositivo.
 - **Response**:
-  - `status`: Indica o resultado da operação.
-  - `message`: Mensagem de sucesso ou erro.
+  - `status`: "success" ou "error"
+  - `message`: Mensagem sobre o sucesso ou erro da operação
+  - `deviceToken` (string): Token único do dispositivo criado (em caso de sucesso na criação)
+  - **Erros comuns**: "Invalid user token", "Failed to create device", "Error creating device", "No device found"
 
 ---
 
@@ -74,8 +84,10 @@
 - **GET Parameters**:
   - `token` (string): Token de autenticação.
 - **Response**:
-  - `status`: Indica o resultado da operação.
-  - `message`: Mensagem de sucesso ou erro.
+  - `status`: "success" ou "error"
+  - `message`: "Command added to queue" ou "Command executed"
+  - `command`: Detalhes do comando executado (somente em GET)
+  - **Erros comuns**: "Invalid user token", "Unauthorized access to the device", "Failed to add command to queue", "No unexecuted commands found"
 
 ---
 
@@ -100,6 +112,7 @@
   - `deviceId` (string): ID do dispositivo.
   - `scheduleId` (string): ID do agendamento.
 - **Response**:
-  - `status`: Indica o resultado da operação.
-  - `message`: Mensagem de sucesso ou erro.
-
+  - `status`: "success" ou "error"
+  - `message`: "Schedule created successfully", "Command executed successfully", "Schedule deleted successfully"
+  - `command`: Detalhes do comando executado (somente em GET)
+  - **Erros comuns**: "Invalid user token", "User does not own this device", "Error creating schedule", "No scheduled commands found", "Error deleting schedule or schedule not found" 
