@@ -92,6 +92,32 @@ class User {
         }
     }
 
+    public function logout($userToken) {
+        // Prepare the SQL query to delete the session by token
+        $sql = "DELETE FROM Sessions WHERE token = ?";
+        
+        // Prepare the statement
+        $stmt = $this->conn->prepare($sql);
+        
+        // Bind the token to the placeholder
+        $stmt->bind_param("s", $userToken);
+        
+        // Execute the query
+        if ($stmt->execute()) {
+            // Check if any rows were affected (session deleted)
+            if ($stmt->affected_rows > 0) {
+                $stmt->close();
+                return array('status' => 'success', 'message' => 'Logged out successfully');
+            } else {
+                $stmt->close();
+                return array('status' => 'error', 'message' => 'Invalid token or session not found');
+            }
+        } else {
+            $stmt->close();
+            return array('status' => 'error', 'message' => 'Logout failed');
+        }
+    }    
+
     public function getUser($userToken) {
         // Prepare the SQL query to select the user by login token
         $sql = "SELECT u.id, u.name, u.email, u.admin FROM Users u WHERE u.id = (SELECT UserId From Sessions s WHERE s.token = ?)";
