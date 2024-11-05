@@ -43,14 +43,14 @@ CREATE TABLE `Sessions` (
 
 CREATE TABLE `DeviceQueue` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `DeviceId` int NOT NULL,
+  `deviceId` int NOT NULL,
   `command` varchar(100) COLLATE utf8mb3_unicode_ci NOT NULL,
   `info` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `issuedOn` datetime NOT NULL,
   `executedOn` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `DeviceQueue_Devices_FK` (`DeviceId`),
-  CONSTRAINT `DeviceQueue_Devices_FK` FOREIGN KEY (`DeviceId`) REFERENCES `Devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `DeviceQueue_Devices_FK` (`deviceId`),
+  CONSTRAINT `DeviceQueue_Devices_FK` FOREIGN KEY (`deviceId`) REFERENCES `Devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 
@@ -58,12 +58,12 @@ CREATE TABLE `DeviceQueue` (
 
 CREATE TABLE `DeviceScheduler` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `DeviceId` int NOT NULL,
+  `deviceId` int NOT NULL,
   `command` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `time` time NOT NULL,
   `lastExecuted` datetime NOT NULL,
   `info` varchar(100) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `DeviceQueue_Devices_FK` (`DeviceId`) USING BTREE,
-  CONSTRAINT `DeviceQueue_Devices_FK_copy` FOREIGN KEY (`DeviceId`) REFERENCES `Devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `DeviceQueue_Devices_FK` (`deviceId`) USING BTREE,
+  CONSTRAINT `DeviceQueue_Devices_FK_copy` FOREIGN KEY (`deviceId`) REFERENCES `Devices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
