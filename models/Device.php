@@ -112,7 +112,7 @@ class Device
         // Prepare the SQL query to select device information
         $sql = "SELECT d.id, d.name FROM Devices d WHERE d.token = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $deviceToken);
+        $stmt->bind_param("s", $deviceToken);
         $stmt->execute();
         $result = $stmt->get_result();
 
