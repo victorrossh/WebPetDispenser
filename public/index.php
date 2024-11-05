@@ -21,6 +21,10 @@ if (preg_match('/^\/api\//', $requestUri)) {
             require __DIR__ . '/../api/login.php';
             break;
 
+        case '/api/logout':
+            require __DIR__ . '/../api/logout.php';
+            break;
+
         case '/api/command':
             require __DIR__ . '/../api/command.php';
             break;
