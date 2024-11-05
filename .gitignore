@@ -1,1 +1,2 @@
 .env
+tests/delete_device.http

@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($data["token"]) && isset($data["deviceId"])) {
         // Call the delete function in the controller
         $controller = new DeviceController();
-        $response = $controller->delete($data["token"], isset($data["deviceId"]));
+        $response = $controller->delete($data["token"], $data["deviceId"]);
 
         // Return the response in JSON format
         echo json_encode($response);
