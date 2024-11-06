@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($data["token"]) && isset($data["name"])) {
         // Call the getdata function in the controller
         $controller = new DeviceController();
-        $response = $controller->create($data["token"], isset($data["name"]));
+        $response = $controller->create($data["token"], $data["name"]);
 
         // Return the response in JSON format
         echo json_encode($response);
