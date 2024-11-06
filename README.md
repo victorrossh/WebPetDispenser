@@ -280,6 +280,7 @@ This API provides endpoints for managing users, devices, commands, and schedules
     - `token` (string): User's authentication token.
     - `deviceId` (int): Device ID.
     - `command` (string): Command to be scheduled.
+    - `info` (string): Info about the command.
     - `time` (string): Scheduled time in `YYYY-MM-DD HH:MM:SS` format.
   - **Response**:
     - **Success**:
